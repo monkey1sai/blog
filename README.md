@@ -22,14 +22,19 @@ npm run check    # 型別與內容檢查
 
 ```md
 ---
-title: 作品名稱
+title: 用途標題｜一句話說明作品做什麼
+subtitle: my-repo       # 副標，通常放 repo 名稱
 summary: 一句話說明（140 字內）
-category: game          # game | ai-agent | audio | tool | product
+category: game          # game | ai-agent | audio | tool | product | research | design
 tags: [threejs, web-audio]   # kebab-case
 techStack: [Three.js, Web Audio API]
-status: live            # live | beta | development | archived
+cover: /covers/my-game.webp   # 檔案不存在時自動顯示預設圖樣
+coverAlt: 封面說明
+status: live            # live | beta | development | prototype | design | archived（決定標籤顏色）
+statusLabel: 已公開試玩   # 標籤上實際顯示的文字（可省略）
+order: 3                # 作品集頁排序（數字越小越前面）
 featured: true          # 要上首頁精選才填
-featuredOrder: 7        # 首頁精選排序（數字越小越前面，首頁最多 6 件）
+featuredOrder: 7        # 首頁精選排序（數字越小越前面，首頁最多 9 件）
 draft: false
 # publishedAt: 2026-10-08   # 有確切日期才填
 links:
@@ -73,6 +78,7 @@ draft: true                     # 改成 false 才會發布
 - 樣式：`src/styles/global.css`（原生 CSS 與 design tokens；深色預設，可切換淺色，文章內頁採 720px 閱讀寬度）
 - 社群連結與分類名稱：`src/consts.ts`
 - 內容 schema：`src/content.config.ts`
+- 作品封面：原始圖放在 `/workspace/blog-assets/`，執行 `COVERS_SRC=/workspace/blog-assets node scripts/optimize-covers.mjs` 轉成 `public/covers/<slug>.webp`（1280×720）與 `public/images/projects/*.webp`；對照表寫在腳本開頭
 - OG 圖：`public/og-default.svg`，用 `node scripts/build-og.mjs` 轉成 `public/og-default.png`
 
 ## 部署（Cloudflare Pages）

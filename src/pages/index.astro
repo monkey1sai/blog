@@ -5,7 +5,7 @@ import PostList from '../components/PostList.astro';
 import { SITE } from '../consts';
 import { getFeaturedProjects, getPosts } from '../lib/content';
 
-const featured = await getFeaturedProjects(6);
+const featured = await getFeaturedProjects(9);
 const posts = (await getPosts()).slice(0, 3);
 
 const directions = [

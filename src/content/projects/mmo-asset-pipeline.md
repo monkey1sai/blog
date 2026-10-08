@@ -6,7 +6,8 @@ tags: [3d-pipeline, blender, game-art, python]
 techStack: [Python, Blender, Git LFS]
 status: development
 featured: true
-featuredOrder: 6
+featuredOrder: 8
+order: 12
 links:
   - type: source
     label: GitHub 原始碼

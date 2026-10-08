@@ -133,6 +133,14 @@ a.chip:hover { color: var(--accent); border-color: var(--accent); }
 .badge-beta { color: var(--accent); }
 .badge-development { color: var(--accent-2); }
 .badge-archived { color: var(--muted); }
+.badge-prototype { color: #f59e0b; }
+.badge-design { color: #a78bfa; }
+:root[data-theme='light'] .badge-prototype { color: #b45309; }
+:root[data-theme='light'] .badge-design { color: #6d28d9; }
+.project-subtitle { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); margin: 0; }
+.prose figure { margin: 1.5rem 0; }
+.prose figure img { display: block; width: 100%; height: auto; border: 1px solid var(--border); }
+.prose figcaption { margin-top: 0.5rem; font-size: 0.85rem; color: var(--muted); }
 :root[data-theme='light'] .badge-live { color: #15803d; }
 
 /* ===== Header ===== */

@@ -32,12 +32,16 @@ export const PROJECT_CATEGORIES = {
   audio: '音訊',
   tool: '工具',
   product: '產品',
+  research: '研究',
+  design: '架構設計',
 } as const;
 
 export const PROJECT_STATUS = {
   live: '已上線',
   beta: '測試中',
   development: '開發中',
+  prototype: '原型',
+  design: '設計階段',
   archived: '已封存',
 } as const;
 

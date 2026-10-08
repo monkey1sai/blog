@@ -6,7 +6,8 @@ tags: [mcp, ai-agent, web-audio, music-generation]
 techStack: [MCP, Node.js, Web Audio API, Cloudflare Workers]
 status: development
 featured: true
-featuredOrder: 4
+featuredOrder: 6
+order: 10
 links:
   - type: source
     label: GitHub 原始碼

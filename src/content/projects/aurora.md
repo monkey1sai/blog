@@ -6,7 +6,8 @@ tags: [web-audio, synthesizer, dsp, creative-coding]
 techStack: [Web Audio API, AudioWorklet, JavaScript]
 status: beta
 featured: true
-featuredOrder: 2
+featuredOrder: 4
+order: 8
 links:
   - type: demo
     label: 開啟 AURORA

@@ -5,7 +5,7 @@ import StatusBadge from './StatusBadge.astro';
 import ProjectCover from './ProjectCover.astro';
 interface Props { project: Project; headingLevel?: 'h2' | 'h3' }
 const { project, headingLevel = 'h3' } = Astro.props;
-const { title, summary, category, status, techStack } = project.data;
+const { title, subtitle, summary, category, status, statusLabel, techStack } = project.data;
 const Heading = headingLevel;
 ---
 <article class="card project-card" data-project data-category={category}>
@@ -13,9 +13,10 @@ const Heading = headingLevel;
   <div class="project-body">
     <div class="project-meta">
       <span>{PROJECT_CATEGORIES[category]}</span>
-      <StatusBadge status={status} />
+      <StatusBadge status={status} label={statusLabel} />
     </div>
     <Heading class="h3" style="font-size:1.15rem"><a href={`/projects/${project.id}/`}>{title}</a></Heading>
+    {subtitle && <p class="project-subtitle">{subtitle}</p>}
     <p>{summary}</p>
     {techStack.length > 0 && (
       <ul class="chips" aria-label="技術">

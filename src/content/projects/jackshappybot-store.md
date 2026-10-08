@@ -6,7 +6,8 @@ tags: [ai-agent, agent-skills, a2a, cloudflare-workers]
 techStack: [Cloudflare Workers, D1, R2, A2A, OKX 鏈上付款]
 status: live
 featured: true
-featuredOrder: 5
+featuredOrder: 7
+order: 11
 links:
   - type: store
     label: 前往商店

@@ -1,9 +1,11 @@
 ---
 import { PROJECT_CATEGORIES } from '../consts';
 import type { Project } from '../lib/content';
-interface Props { project: Project; large?: boolean }
-const { project } = Astro.props;
-const { cover, category, title } = project.data;
+import { resolveCover } from '../lib/cover';
+interface Props { project: Project; large?: boolean; eager?: boolean }
+const { project, eager = false } = Astro.props;
+const { category, title, coverAlt } = project.data;
+const cover = resolveCover(project.data.cover);
 
 // 沒有封面圖時，用作品 id 產生穩定的漸層圖樣
 let h = 0;
@@ -14,7 +16,7 @@ const angle = h % 360;
 ---
 <div class="project-cover">
   {cover ? (
-    <img src={cover} alt={`${title} 封面`} loading="lazy" decoding="async" width="640" height="360" />
+    <img src={cover} alt={coverAlt ?? `${title} 封面`} loading={eager ? 'eager' : 'lazy'} decoding="async" width="1280" height="720" />
   ) : (
     <>
       <svg class="cover-art" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
