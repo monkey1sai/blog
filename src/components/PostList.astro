@@ -1,0 +1,25 @@
+---
+import { BLOG_CATEGORIES } from '../consts';
+import { formatDate, isoDate, type Post } from '../lib/content';
+interface Props { posts: Post[] }
+const { posts } = Astro.props;
+---
+{posts.length === 0 ? (
+  <div class="card empty-state">
+    <p><strong>開發紀錄即將公開</strong></p>
+    <p class="muted">第一篇文章正在整理中，可以先看看作品集，或訂閱 <a href="/rss.xml">RSS</a>。</p>
+  </div>
+) : (
+  <ul class="post-list">
+    {posts.map((post) => (
+      <li class="card post-item">
+        <a href={`/blog/${post.id}/`}>
+          <time datetime={isoDate(post.data.publishedAt)}>{formatDate(post.data.publishedAt)}</time>
+          <span class="muted" style="font-size:.85rem"> · {BLOG_CATEGORIES[post.data.category]}</span>
+          <h3 style="margin:.35rem 0 .25rem">{post.data.title}</h3>
+          <p class="muted" style="margin:0">{post.data.description}</p>
+        </a>
+      </li>
+    ))}
+  </ul>
+)}

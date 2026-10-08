@@ -1,0 +1,150 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import PostList from '../components/PostList.astro';
+import { SITE } from '../consts';
+import { getFeaturedProjects, getPosts } from '../lib/content';
+
+const featured = await getFeaturedProjects(6);
+const posts = (await getPosts()).slice(0, 3);
+
+const directions = [
+  {
+    tag: '01 / GAME',
+    title: '遊戲與 3D',
+    text: '用 Three.js 做瀏覽器就能玩的動作遊戲，並把 3D 美術流程工程化。',
+    href: '/projects/changshan-longdan/',
+    linkText: '看《常山龍膽》',
+  },
+  {
+    tag: '02 / AGENT',
+    title: 'AI Agent 與 MCP',
+    text: '讓 AI 真的去操作：會玩遊戲的代理、透過 MCP 作曲，以及代理之間的技能交易。',
+    href: '/projects/jev-ai/',
+    linkText: '看 Jev AI',
+  },
+  {
+    tag: '03 / SOUND',
+    title: '聲音與創意程式',
+    text: '在瀏覽器裡即時合成聲音，把 DSP 與互動介面做成好玩的樂器。',
+    href: '/projects/aurora/',
+    linkText: '看 AURORA',
+  },
+];
+
+const capabilities = [
+  { name: 'Cloudflare 全端', desc: 'Workers、D1、R2、Access 部署與維運' },
+  { name: 'A2A 代理商務', desc: 'Agent 對 Agent 的交易流程與鏈上付款' },
+  { name: 'MCP Server', desc: '自建 MCP 工具，讓 AI 用戶端直接操作服務' },
+  { name: 'Agent 治理', desc: 'fail-closed、schema-first 的代理執行框架' },
+  { name: 'Agent Skills 產品化', desc: '研究 → 技能 → 打包 → 可追溯版本' },
+  { name: 'Three.js / WebGL', desc: '瀏覽器 3D 遊戲與即時繪製' },
+  { name: 'Web Audio / DSP', desc: 'AudioWorklet 即時合成與音訊分析' },
+  { name: 'Blender 3D 流程', desc: '3D 資產製作、驗收與交付流程' },
+  { name: 'RAG / LLM 工程', desc: '檢索增強、評測與推論服務' },
+];
+
+const websiteLd = {
+  '@type': 'WebSite',
+  '@id': new URL('/#website', Astro.site).href,
+  name: SITE.name,
+  description: SITE.description,
+  url: new URL('/', Astro.site).href,
+  inLanguage: 'zh-Hant-TW',
+  author: { '@id': new URL('/#person', Astro.site).href },
+};
+---
+
+<BaseLayout jsonLd={websiteLd}>
+  <section class="hero">
+    <div class="container">
+      <p class="prompt">$ monkey1sai --build --ship</p>
+      <h1>讓 AI 不只會回答，<br /><span class="accent">還能創作、執行與交付。</span></h1>
+      <p class="hero-lead">
+        我是許竣傑（monkey1sai）。這裡收錄我做的瀏覽器遊戲、AI 遊戲代理、即時音訊合成器、MCP 工具與 Agent 技能商店，也記錄背後的開發過程。
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="/projects/">瀏覽作品集</a>
+        <a class="btn" href="/contact/">合作與聯絡</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="featured-title" style="padding-top:1rem">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Featured Work</p>
+          <h2 id="featured-title">精選作品</h2>
+        </div>
+        <a href="/projects/">全部作品 →</a>
+      </div>
+      <div class="grid">
+        {featured.map((p) => <ProjectCard project={p} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="directions-title" style="padding-top:0">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Directions</p>
+          <h2 id="directions-title">三個創作方向</h2>
+        </div>
+      </div>
+      <div class="grid-3">
+        {directions.map((d) => (
+          <article class="card">
+            <p class="direction-icon">{d.tag}</p>
+            <h3>{d.title}</h3>
+            <p class="muted">{d.text}</p>
+            <a href={d.href}>{d.linkText} →</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="posts-title" style="padding-top:0">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Dev Notes</p>
+          <h2 id="posts-title">最新文章</h2>
+        </div>
+        {posts.length > 0 && <a href="/blog/">全部文章 →</a>}
+      </div>
+      <PostList posts={posts} />
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="cap-title" style="padding-top:0">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Capabilities</p>
+          <h2 id="cap-title">能力與技術</h2>
+        </div>
+      </div>
+      <ul class="capabilities">
+        {capabilities.map((c) => (
+          <li><strong>{c.name}</strong><span>{c.desc}</span></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="card cta">
+        <h2>有想法想一起做？</h2>
+        <p class="muted" style="max-width:52ch;margin-inline:auto">遊戲原型、AI Agent 工作流、MCP 工具或互動音訊，都歡迎來聊聊。</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="/contact/">聯絡我</a>
+          <a class="btn" href="/about/">認識我</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

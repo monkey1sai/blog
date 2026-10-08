@@ -1,0 +1,84 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import StatusBadge from '../../components/StatusBadge.astro';
+import ProjectCover from '../../components/ProjectCover.astro';
+import { LINK_TYPES, PROJECT_CATEGORIES } from '../../consts';
+import { formatDate, getProjects, type Project } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const projects = await getProjects();
+  return projects.map((project) => ({ params: { slug: project.id }, props: { project } }));
+}
+
+interface Props { project: Project }
+const { project } = Astro.props;
+const { Content } = await render(project);
+const d = project.data;
+
+const ld = {
+  '@type': 'CreativeWork',
+  name: d.title,
+  description: d.summary,
+  url: new URL(`/projects/${project.id}/`, Astro.site).href,
+  inLanguage: 'zh-Hant-TW',
+  keywords: d.tags.join(', '),
+  creator: { '@id': new URL('/#person', Astro.site).href },
+  ...(d.links.length ? { sameAs: d.links.map((l) => l.url) } : {}),
+};
+---
+
+<BaseLayout title={d.title} description={d.summary} jsonLd={ld}>
+  <div class="container">
+    <header class="page-header">
+      <nav class="breadcrumb" aria-label="麵包屑"><a href="/projects/">作品集</a> / {PROJECT_CATEGORIES[d.category]}</nav>
+      <div class="project-meta" style="margin-bottom:.75rem">
+        <span>{PROJECT_CATEGORIES[d.category]}</span>
+        <StatusBadge status={d.status} />
+      </div>
+      <h1 style="font-size:clamp(1.7rem,5vw,2.6rem)">{d.title}</h1>
+      <p>{d.summary}</p>
+      {d.links.length > 0 && (
+        <div class="btn-row" style="margin-top:1.25rem">
+          {d.links.map((l, i) => (
+            <a class={i === 0 ? 'btn btn-primary' : 'btn'} href={l.url} target="_blank" rel="noopener">{l.label} ↗</a>
+          ))}
+        </div>
+      )}
+    </header>
+
+    <div class="detail-layout">
+      <div>
+        <div class="card" style="padding:0;overflow:hidden;margin-bottom:2rem"><ProjectCover project={project} /></div>
+        <div class="prose"><Content /></div>
+      </div>
+      <aside class="detail-aside" aria-label="作品資訊">
+        <div class="card">
+          <dl>
+            <div><dt>類型</dt><dd>{PROJECT_CATEGORIES[d.category]}</dd></div>
+            <div><dt>狀態</dt><dd><StatusBadge status={d.status} /></dd></div>
+            {d.techStack.length > 0 && (
+              <div><dt>技術</dt><dd><ul class="chips">{d.techStack.map((t) => <li class="chip">{t}</li>)}</ul></dd></div>
+            )}
+            {d.tags.length > 0 && (
+              <div><dt>標籤</dt><dd><ul class="chips">{d.tags.map((t) => <li><a class="chip" href={`/tags/${t}/`}>#{t}</a></li>)}</ul></dd></div>
+            )}
+            {d.publishedAt && <div><dt>發布</dt><dd>{formatDate(d.publishedAt)}</dd></div>}
+            {d.updatedAt && <div><dt>更新</dt><dd>{formatDate(d.updatedAt)}</dd></div>}
+          </dl>
+        </div>
+        {d.links.length > 0 && (
+          <div class="card">
+            <h2 style="font-size:1rem;margin-bottom:.75rem">公開連結</h2>
+            <ul class="link-list">
+              {d.links.map((l) => (
+                <li><a href={l.url} target="_blank" rel="noopener"><span>{l.label}</span><small>{LINK_TYPES[l.type]} ↗</small></a></li>
+              ))}
+            </ul>
+          </div>
+        )}
+        <a href="/projects/">← 回到作品集</a>
+      </aside>
+    </div>
+  </div>
+</BaseLayout>

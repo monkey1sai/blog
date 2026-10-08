@@ -1,0 +1,37 @@
+---
+import { PROJECT_CATEGORIES } from '../consts';
+import type { Project } from '../lib/content';
+interface Props { project: Project; large?: boolean }
+const { project } = Astro.props;
+const { cover, category, title } = project.data;
+
+// 沒有封面圖時，用作品 id 產生穩定的漸層圖樣
+let h = 0;
+for (const ch of project.id) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+const hueA = 180 + (h % 40);       // 青色系
+const hueB = 250 + ((h >> 5) % 40); // 紫色系
+const angle = h % 360;
+---
+<div class="project-cover">
+  {cover ? (
+    <img src={cover} alt={`${title} 封面`} loading="lazy" decoding="async" width="640" height="360" />
+  ) : (
+    <>
+      <svg class="cover-art" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <linearGradient id={`g-${project.id}`} gradientTransform={`rotate(${angle % 90})`}>
+            <stop offset="0" stop-color={`hsl(${hueA} 80% 45% / .55)`} />
+            <stop offset="1" stop-color={`hsl(${hueB} 70% 55% / .45)`} />
+          </linearGradient>
+          <pattern id={`p-${project.id}`} width="20" height="20" patternUnits="userSpaceOnUse">
+            <path d="M20 0H0V20" fill="none" stroke="currentColor" stroke-opacity=".12" />
+          </pattern>
+        </defs>
+        <rect width="320" height="180" fill={`url(#g-${project.id})`} />
+        <rect width="320" height="180" fill={`url(#p-${project.id})`} style="color:var(--text)" />
+        <circle cx={60 + (h % 200)} cy={40 + ((h >> 3) % 100)} r="70" fill={`hsl(${hueB} 80% 70% / .18)`} />
+      </svg>
+      <span class="cover-label">{PROJECT_CATEGORIES[category]}</span>
+    </>
+  )}
+</div>

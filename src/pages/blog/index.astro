@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostList from '../../components/PostList.astro';
+import { BLOG_CATEGORIES } from '../../consts';
+import { getPosts } from '../../lib/content';
+
+const posts = await getPosts();
+const used = [...new Set(posts.map((p) => p.data.category))];
+---
+
+<BaseLayout title="文章" description="許竣傑的開發紀錄與技術筆記：AI Agent、遊戲開發、創意程式與工程實作。">
+  <div class="container" style="padding-bottom:var(--space-section)">
+    <header class="page-header">
+      <p class="eyebrow">Dev Notes</p>
+      <h1>文章</h1>
+      <p>開發紀錄、技術筆記與做作品時踩過的坑。</p>
+      {used.length > 0 && (
+        <ul class="chips" aria-label="文章分類">
+          {used.map((c) => <li><a class="chip" href={`/blog/category/${c}/`}>{BLOG_CATEGORIES[c]}</a></li>)}
+        </ul>
+      )}
+    </header>
+    <PostList posts={posts} />
+  </div>
+</BaseLayout>

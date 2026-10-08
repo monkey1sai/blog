@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PostList from '../../../components/PostList.astro';
+import { BLOG_CATEGORIES } from '../../../consts';
+import { getPosts, type Post } from '../../../lib/content';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  const cats = [...new Set(posts.map((p) => p.data.category))];
+  return cats.map((category) => ({
+    params: { category },
+    props: { posts: posts.filter((p) => p.data.category === category) },
+  }));
+}
+
+interface Props { posts: Post[] }
+const { posts } = Astro.props;
+const category = Astro.params.category as keyof typeof BLOG_CATEGORIES;
+const label = BLOG_CATEGORIES[category];
+---
+
+<BaseLayout title={`分類：${label}`} description={`「${label}」分類下的文章。`}>
+  <div class="container" style="padding-bottom:var(--space-section)">
+    <header class="page-header">
+      <nav class="breadcrumb" aria-label="麵包屑"><a href="/blog/">文章</a> / 分類</nav>
+      <h1>{label}</h1>
+    </header>
+    <PostList posts={posts} />
+  </div>
+</BaseLayout>

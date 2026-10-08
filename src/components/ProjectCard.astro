@@ -1,0 +1,26 @@
+---
+import { PROJECT_CATEGORIES } from '../consts';
+import type { Project } from '../lib/content';
+import StatusBadge from './StatusBadge.astro';
+import ProjectCover from './ProjectCover.astro';
+interface Props { project: Project; headingLevel?: 'h2' | 'h3' }
+const { project, headingLevel = 'h3' } = Astro.props;
+const { title, summary, category, status, techStack } = project.data;
+const Heading = headingLevel;
+---
+<article class="card project-card" data-project data-category={category}>
+  <ProjectCover project={project} />
+  <div class="project-body">
+    <div class="project-meta">
+      <span>{PROJECT_CATEGORIES[category]}</span>
+      <StatusBadge status={status} />
+    </div>
+    <Heading class="h3" style="font-size:1.15rem"><a href={`/projects/${project.id}/`}>{title}</a></Heading>
+    <p>{summary}</p>
+    {techStack.length > 0 && (
+      <ul class="chips" aria-label="技術">
+        {techStack.slice(0, 4).map((t) => <li class="chip">{t}</li>)}
+      </ul>
+    )}
+  </div>
+</article>

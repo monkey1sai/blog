@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { PROJECT_CATEGORIES } from '../../consts';
+import { getProjects } from '../../lib/content';
+
+const projects = await getProjects();
+const used = new Set(projects.map((p) => p.data.category));
+const categories = (Object.keys(PROJECT_CATEGORIES) as (keyof typeof PROJECT_CATEGORIES)[]).filter((c) => used.has(c));
+---
+
+<BaseLayout title="作品集" description="許竣傑的作品集：瀏覽器遊戲、AI Agent、音訊合成、MCP 工具與 Agent 技能商店。">
+  <div class="container">
+    <header class="page-header">
+      <p class="eyebrow">Projects</p>
+      <h1>作品集</h1>
+      <p>遊戲、AI 代理、聲音與工具。點進每件作品可以看到說明與公開連結。</p>
+    </header>
+
+    <div class="filter" role="group" aria-label="依類型篩選" data-filter hidden>
+      <button type="button" data-value="all" aria-pressed="true">全部</button>
+      {categories.map((c) => (
+        <button type="button" data-value={c} aria-pressed="false">{PROJECT_CATEGORIES[c]}</button>
+      ))}
+    </div>
+
+    <div class="grid" style="padding-bottom:var(--space-section)" aria-live="polite">
+      {projects.map((p) => <ProjectCard project={p} />)}
+    </div>
+  </div>
+</BaseLayout>
+
+<script is:inline>
+  (() => {
+    const bar = document.querySelector('[data-filter]');
+    if (!bar) return;
+    bar.hidden = false; // 沒有 JS 時不顯示篩選列，直接列出全部作品
+    const cards = document.querySelectorAll('[data-project]');
+    bar.addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-value]');
+      if (!btn) return;
+      const v = btn.dataset.value;
+      bar.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+      cards.forEach((card) => { card.hidden = v !== 'all' && card.dataset.category !== v; });
+    });
+  })();
+</script>

@@ -1,0 +1,19 @@
+---
+import { SITE, SOCIALS } from '../consts';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <p style="margin:0 0 .25rem"><strong style="color:var(--text)">{SITE.name}</strong></p>
+      <p style="margin:0">{SITE.tagline}</p>
+      <p style="margin:.5rem 0 0">© {year} {SITE.author}（{SITE.handle}）· <a href="/rss.xml">RSS</a></p>
+    </div>
+    <ul class="footer-links" aria-label="社群連結">
+      {SOCIALS.map((s) => (
+        <li><a href={s.url} rel="me noopener" target="_blank">{s.name}</a></li>
+      ))}
+    </ul>
+  </div>
+</footer>

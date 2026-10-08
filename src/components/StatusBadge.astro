@@ -1,0 +1,6 @@
+---
+import { PROJECT_STATUS } from '../consts';
+interface Props { status: keyof typeof PROJECT_STATUS }
+const { status } = Astro.props;
+---
+<span class={`badge badge-${status}`}>{PROJECT_STATUS[status]}</span>

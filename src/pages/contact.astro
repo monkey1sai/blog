@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SOCIALS } from '../consts';
+const notes: Record<string, string> = {
+  X: '最新動態與作品更新',
+  Threads: '日常開發紀錄',
+  GitHub: '公開的原始碼與專案',
+  YouTube: '遊戲與 AI 作品影片',
+  'itch.io': '可以直接玩的遊戲',
+};
+---
+
+<BaseLayout title="聯絡" description="想合作或交流？透過 X、Threads、GitHub、YouTube 或 itch.io 找到許竣傑。">
+  <div class="container" style="padding-bottom:var(--space-section)">
+    <header class="page-header">
+      <p class="eyebrow">Contact</p>
+      <h1>合作與聯絡</h1>
+      <p>遊戲原型、AI Agent 工作流、MCP 工具或互動音訊，都歡迎來聊。可以透過下面的社群帳號找到我。</p>
+    </header>
+    <ul class="social-grid">
+      {SOCIALS.map((s) => (
+        <li>
+          <a href={s.url} rel="me noopener" target="_blank">
+            <strong>{s.name} ↗</strong>
+            <span>{s.handle}</span><br />
+            <span>{notes[s.name]}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</BaseLayout>

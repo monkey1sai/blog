@@ -1,0 +1,61 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { BLOG_CATEGORIES, SITE } from '../../consts';
+import { formatDate, getPosts, getProjects, isoDate, type Post } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+interface Props { post: Post }
+const { post } = Astro.props;
+const { Content } = await render(post);
+const d = post.data;
+const projects = await getProjects();
+const related = projects.filter((p) => d.relatedProjects.includes(p.id));
+
+const ld = {
+  '@type': 'BlogPosting',
+  headline: d.title,
+  description: d.description,
+  datePublished: d.publishedAt.toISOString(),
+  ...(d.updatedAt ? { dateModified: d.updatedAt.toISOString() } : {}),
+  inLanguage: 'zh-Hant-TW',
+  url: new URL(`/blog/${post.id}/`, Astro.site).href,
+  author: { '@id': new URL('/#person', Astro.site).href },
+  publisher: { '@id': new URL('/#person', Astro.site).href },
+};
+---
+
+<BaseLayout title={d.title} description={d.description} type="article" jsonLd={ld} publishedTime={d.publishedAt} modifiedTime={d.updatedAt}>
+  <article class="article">
+    <div class="container">
+      <div class="article-inner">
+        <header class="article-header">
+          <nav class="breadcrumb" aria-label="麵包屑"><a href="/blog/">文章</a> / <a href={`/blog/category/${d.category}/`}>{BLOG_CATEGORIES[d.category]}</a></nav>
+          <h1>{d.title}</h1>
+          <div class="article-meta">
+            <span>發布 <time datetime={isoDate(d.publishedAt)}>{formatDate(d.publishedAt)}</time></span>
+            {d.updatedAt && <span>更新 <time datetime={isoDate(d.updatedAt)}>{formatDate(d.updatedAt)}</time></span>}
+            <span>{SITE.author}</span>
+          </div>
+          {d.tags.length > 0 && (
+            <ul class="chips" style="margin-top:.85rem">{d.tags.map((t) => <li><a class="chip" href={`/tags/${t}/`}>#{t}</a></li>)}</ul>
+          )}
+        </header>
+        <div class="prose"><Content /></div>
+        {related.length > 0 && (
+          <aside class="card" style="margin-top:3rem">
+            <h2 style="font-size:1rem">相關作品</h2>
+            <ul class="link-list">
+              {related.map((p) => <li><a href={`/projects/${p.id}/`}><span>{p.data.title}</span><small>→</small></a></li>)}
+            </ul>
+          </aside>
+        )}
+        <p style="margin-top:2rem"><a href="/blog/">← 回到文章列表</a></p>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
