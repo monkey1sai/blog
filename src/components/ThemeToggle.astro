@@ -7,7 +7,7 @@
   document.querySelectorAll('[data-theme-toggle]').forEach((btn) => {
     btn.addEventListener('click', () => {
       const root = document.documentElement;
-      const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+      const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
       root.dataset.theme = next;
       try { localStorage.setItem('theme', next); } catch (_) {}
     });

@@ -8,7 +8,7 @@ const { project, headingLevel = 'h3' } = Astro.props;
 const { title, subtitle, summary, category, status, statusLabel, techStack } = project.data;
 const Heading = headingLevel;
 ---
-<article class="card project-card" data-project data-category={category}>
+<article class="card project-card" data-project data-category={category} data-status={status}>
   <ProjectCover project={project} />
   <div class="project-body">
     <div class="project-meta">
@@ -18,10 +18,12 @@ const Heading = headingLevel;
     <Heading class="h3" style="font-size:1.15rem"><a href={`/projects/${project.id}/`}>{title}</a></Heading>
     {subtitle && <p class="project-subtitle">{subtitle}</p>}
     <p>{summary}</p>
+    {statusLabel && <p class="evidence-note">範圍：{statusLabel}</p>}
     {techStack.length > 0 && (
       <ul class="chips" aria-label="技術">
-        {techStack.slice(0, 4).map((t) => <li class="chip">{t}</li>)}
+        {techStack.slice(0, 3).map((t) => <li class="chip">{t}</li>)}
       </ul>
     )}
+    <span class="case-link" aria-hidden="true">看作品與過程 →</span>
   </div>
 </article>

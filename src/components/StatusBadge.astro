@@ -3,4 +3,4 @@ import { PROJECT_STATUS } from '../consts';
 interface Props { status: keyof typeof PROJECT_STATUS; label?: string }
 const { status, label } = Astro.props;
 ---
-<span class={`badge badge-${status}`}>{label ?? PROJECT_STATUS[status]}</span>
+<span class={`badge badge-${status}`} title={label}>{PROJECT_STATUS[status]}</span>

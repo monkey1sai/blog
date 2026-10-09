@@ -24,7 +24,7 @@ export async function getProjects(): Promise<Project[]> {
 }
 
 /** 首頁精選：只看 featuredOrder。 */
-export async function getFeaturedProjects(limit = 9): Promise<Project[]> {
+export async function getFeaturedProjects(limit = 3): Promise<Project[]> {
   return (await getProjects())
     .filter((p) => p.data.featured)
     .sort((a, b) => (a.data.featuredOrder ?? LAST) - (b.data.featuredOrder ?? LAST) || byTitle(a, b))

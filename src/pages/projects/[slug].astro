@@ -13,7 +13,8 @@ export async function getStaticPaths() {
 
 interface Props { project: Project }
 const { project } = Astro.props;
-const { Content } = await render(project);
+const { Content, headings } = await render(project);
+const sections = headings.filter((heading) => heading.depth === 2);
 const d = project.data;
 
 const ld = {
@@ -35,6 +36,7 @@ const ld = {
       <div class="project-meta" style="margin-bottom:.75rem">
         <span>{PROJECT_CATEGORIES[d.category]}</span>
         <StatusBadge status={d.status} label={d.statusLabel} />
+        {d.statusLabel && <span>範圍：{d.statusLabel}</span>}
       </div>
       <h1 style="font-size:clamp(1.7rem,5vw,2.6rem)">{d.title}</h1>
       {d.subtitle && <p class="project-subtitle" style="margin-top:.35rem">{d.subtitle}</p>}
@@ -54,6 +56,7 @@ const ld = {
         <div class="prose"><Content /></div>
       </div>
       <aside class="detail-aside" aria-label="作品資訊">
+        {sections.length > 0 && <nav class="card project-toc" aria-label="本頁目錄"><h2 style="font-size:1rem">讀這件作品</h2><ol>{sections.map((section) => <li><a href={`#${section.slug}`}>{section.text}</a></li>)}</ol></nav>}
         <div class="card">
           <dl>
             <div><dt>類型</dt><dd>{PROJECT_CATEGORIES[d.category]}</dd></div>
