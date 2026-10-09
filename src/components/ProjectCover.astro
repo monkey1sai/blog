@@ -10,8 +10,8 @@ const cover = resolveCover(project.data.cover);
 // 沒有封面圖時，用作品 id 產生穩定的漸層圖樣
 let h = 0;
 for (const ch of project.id) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
-const hueA = 180 + (h % 40);       // 青色系
-const hueB = 250 + ((h >> 5) % 40); // 紫色系
+const hueA = 345 + (h % 12);       // 酒紅系
+const hueB = 32 + ((h >> 5) % 10); // 黃銅系
 const angle = h % 360;
 ---
 <div class="project-cover">

@@ -3,7 +3,7 @@ export const SITE = {
   shortName: 'AI Craft Lab',
   author: '許竣傑',
   handle: 'monkey1sai',
-  tagline: '讓 AI 不只會回答，還能創作、執行與交付。',
+  tagline: '把想法做出來，把過程留下來。',
   description:
     '許竣傑（monkey1sai）的作品集與開發筆記：瀏覽器遊戲、AI 遊戲代理、即時音訊合成、MCP 工具與 Agent 技能商店。',
   locale: 'zh-TW',

@@ -10,13 +10,14 @@ const notes: Record<string, string> = {
 };
 ---
 
-<BaseLayout title="聯絡" description="想合作或交流？透過 X、Threads、GitHub、YouTube 或 itch.io 找到許竣傑。">
+<BaseLayout title="聯絡" description="想交流實作心得？透過 X、Threads、GitHub、YouTube 或 itch.io 找到許竣傑。">
   <div class="container" style="padding-bottom:var(--space-section)">
     <header class="page-header">
       <p class="eyebrow">Contact</p>
-      <h1>合作與聯絡</h1>
-      <p>遊戲原型、AI Agent 工作流、MCP 工具或互動音訊，都歡迎來聊。可以透過下面的社群帳號找到我。</p>
+      <h1>有具體想法，聊聊怎麼做。</h1>
+      <p>遊戲、AI 協作工具、互動音訊與工程流程，都歡迎交流。可以透過下面既有的公開帳號找到我。</p>
     </header>
+    <div class="prose contact-note"><h2>可以從這三件事開始</h2><ul><li>你想解決什麼問題？</li><li>目前已經有什麼作品或嘗試？</li><li>希望最後能看到什麼結果？</li></ul><p>有公開網址或畫面，可以一併提供；請勿傳送密碼、金鑰或機密資料。</p></div>
     <ul class="social-grid">
       {SOCIALS.map((s) => (
         <li>

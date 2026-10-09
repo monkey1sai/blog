@@ -13,7 +13,7 @@ links:
 
 sglangRAG 是一套結合高效能 LLM 推論與檢索增強（RAG）的聊天系統。
 
-## 作品重點
+## 我的選擇
 
 - **SGLang 推論**：利用 RadixAttention 與 continuous batching 提升推論效率。
 - **混合檢索**：Dense、Sparse 檢索搭配重排序，提升回答品質。

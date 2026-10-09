@@ -5,8 +5,6 @@ category: tool
 tags: [3d-pipeline, blender, game-art, python]
 techStack: [Python, Blender, Git LFS]
 status: development
-featured: true
-featuredOrder: 8
 order: 12
 links:
   - type: source
@@ -16,7 +14,7 @@ links:
 
 mmo-asset-pipeline 管理「理解一份需求，製作並交付符合需求的 3D 資產」的工作流程，涵蓋人物、道具、場景與建築。
 
-## 作品重點
+## 我的選擇
 
 - **需求整理**：保存需求原文，整理成規格、來源、待確認事項與交付範圍。
 - **製作計畫**：搜尋既有素材，決定要重用、修改、生成還是拆件。

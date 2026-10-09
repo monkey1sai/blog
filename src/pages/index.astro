@@ -4,147 +4,43 @@ import ProjectCard from '../components/ProjectCard.astro';
 import PostList from '../components/PostList.astro';
 import { SITE } from '../consts';
 import { getFeaturedProjects, getPosts } from '../lib/content';
-
-const featured = await getFeaturedProjects(9);
+const websiteLd = { '@type': 'WebSite', '@id': new URL('/#website', Astro.site).href, name: SITE.name, description: SITE.description, url: new URL('/', Astro.site).href, inLanguage: 'zh-Hant-TW', author: { '@id': new URL('/#person', Astro.site).href } };
+const featured = await getFeaturedProjects(3);
 const posts = (await getPosts()).slice(0, 3);
-
-const directions = [
-  {
-    tag: '01 / GAME',
-    title: '遊戲與 3D',
-    text: '用 Three.js 做瀏覽器就能玩的動作遊戲，並把 3D 美術流程工程化。',
-    href: '/projects/changshan-longdan/',
-    linkText: '看《常山龍膽》',
-  },
-  {
-    tag: '02 / AGENT',
-    title: 'AI Agent 與 MCP',
-    text: '讓 AI 真的去操作：會玩遊戲的代理、透過 MCP 作曲，以及代理之間的技能交易。',
-    href: '/projects/jev-ai/',
-    linkText: '看 Jev AI',
-  },
-  {
-    tag: '03 / SOUND',
-    title: '聲音與創意程式',
-    text: '在瀏覽器裡即時合成聲音，把 DSP 與互動介面做成好玩的樂器。',
-    href: '/projects/aurora/',
-    linkText: '看 AURORA',
-  },
+const practices = [
+  { title: '把想法做成作品', text: '從瀏覽器遊戲、聲音合成，到 AI 工具與工程實驗。', href: '/projects/' },
+  { title: '和 AI 一起實作', text: '在案例裡交代設計選擇、AI 協作方式與人的判斷。', href: '/projects/codex-jev-integration/' },
+  { title: '讓結果有跡可循', text: '保留測試、公開入口與限制，不把設計當成已完成。', href: '/projects/ai-flight-recorder/' },
 ];
-
-const capabilities = [
-  { name: 'Cloudflare 全端', desc: 'Workers、D1、R2、Access 部署與維運' },
-  { name: 'A2A 代理商務', desc: 'Agent 對 Agent 的交易流程與鏈上付款' },
-  { name: 'MCP Server', desc: '自建 MCP 工具，讓 AI 用戶端直接操作服務' },
-  { name: 'Agent 治理', desc: 'fail-closed、schema-first 的代理執行框架' },
-  { name: 'Agent Skills 產品化', desc: '研究 → 技能 → 打包 → 可追溯版本' },
-  { name: 'Three.js / WebGL', desc: '瀏覽器 3D 遊戲與即時繪製' },
-  { name: 'Web Audio / DSP', desc: 'AudioWorklet 即時合成與音訊分析' },
-  { name: 'Blender 3D 流程', desc: '3D 資產製作、驗收與交付流程' },
-  { name: 'RAG / LLM 工程', desc: '檢索增強、評測與推論服務' },
-];
-
-const websiteLd = {
-  '@type': 'WebSite',
-  '@id': new URL('/#website', Astro.site).href,
-  name: SITE.name,
-  description: SITE.description,
-  url: new URL('/', Astro.site).href,
-  inLanguage: 'zh-Hant-TW',
-  author: { '@id': new URL('/#person', Astro.site).href },
-};
 ---
-
 <BaseLayout jsonLd={websiteLd}>
   <section class="hero">
-    <div class="container">
-      <p class="prompt">$ monkey1sai --build --ship</p>
-      <h1>讓 AI 不只會回答，<br /><span class="accent">還能創作、執行與交付。</span></h1>
-      <p class="hero-lead">
-        我是許竣傑（monkey1sai）。這裡收錄我做的瀏覽器遊戲、AI 遊戲代理、即時音訊合成器、MCP 工具與 Agent 技能商店，也記錄背後的開發過程。
-      </p>
-      <div class="btn-row">
-        <a class="btn btn-primary" href="/projects/">瀏覽作品集</a>
-        <a class="btn" href="/contact/">合作與聯絡</a>
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">許竣傑的作品與實作筆記</p>
+        <h1>把想法做成<br />可玩的作品、<br /><span class="accent">可用的工具。</span></h1>
+        <p class="hero-lead">我是許竣傑。我用 Codex、Claude Code 與 AI 工具做遊戲、工具和工程實驗，記錄每次選擇、修正與驗證。</p>
+        <div class="btn-row"><a class="btn btn-primary" href="/projects/">看我的作品</a><a class="btn" href="/about/">認識竣傑</a></div>
       </div>
+      <figure class="hero-work">
+        <a href="/projects/changshan-longdan/"><img src="/images/projects/changshan-longdan-title.webp" width="1280" height="720" alt="常山龍膽遊戲標題畫面" fetchpriority="high" /></a>
+        <figcaption><span>從一個想法，到可以打開的作品</span><a href="/projects/changshan-longdan/">常山龍膽 · 看製作過程 →</a></figcaption>
+      </figure>
     </div>
   </section>
-
-  <section class="section" aria-labelledby="featured-title" style="padding-top:1rem">
+  <section class="section featured-section" aria-labelledby="featured-title">
     <div class="container">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow">Featured Work</p>
-          <h2 id="featured-title">精選作品</h2>
-        </div>
-        <a href="/projects/">全部作品 →</a>
-      </div>
-      <div class="grid">
-        {featured.map((p) => <ProjectCard project={p} />)}
-      </div>
+      <div class="section-head"><div><p class="eyebrow">Selected works / 01—03</p><h2 id="featured-title">先從這三件作品認識我</h2></div><a href="/projects/">全部作品 →</a></div>
+      <p class="section-intro">遊戲體驗、工具設計，以及可以追查的 AI 流程。先看做出了什麼，再看怎麼做、驗證到哪裡。</p>
+      <div class="grid">{featured.map((p) => <ProjectCard project={p} />)}</div>
     </div>
   </section>
-
-  <section class="section" aria-labelledby="directions-title" style="padding-top:0">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow">Directions</p>
-          <h2 id="directions-title">三個創作方向</h2>
-        </div>
-      </div>
-      <div class="grid-3">
-        {directions.map((d) => (
-          <article class="card">
-            <p class="direction-icon">{d.tag}</p>
-            <h3>{d.title}</h3>
-            <p class="muted">{d.text}</p>
-            <a href={d.href}>{d.linkText} →</a>
-          </article>
-        ))}
-      </div>
+  <section class="section method-section" aria-labelledby="method-title">
+    <div class="container"><div class="section-head"><div><p class="eyebrow">How I make</p><h2 id="method-title">我怎麼把問題往前推</h2></div></div>
+      <div class="grid-3">{practices.map((p, i) => <article class="method-card"><span class="method-number">0{i + 1}</span><h3>{p.title}</h3><p>{p.text}</p><a href={p.href}>從作品看做法 →</a></article>)}</div>
     </div>
   </section>
-
-  <section class="section" aria-labelledby="posts-title" style="padding-top:0">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow">Dev Notes</p>
-          <h2 id="posts-title">最新文章</h2>
-        </div>
-        {posts.length > 0 && <a href="/blog/">全部文章 →</a>}
-      </div>
-      <PostList posts={posts} />
-    </div>
-  </section>
-
-  <section class="section" aria-labelledby="cap-title" style="padding-top:0">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow">Capabilities</p>
-          <h2 id="cap-title">能力與技術</h2>
-        </div>
-      </div>
-      <ul class="capabilities">
-        {capabilities.map((c) => (
-          <li><strong>{c.name}</strong><span>{c.desc}</span></li>
-        ))}
-      </ul>
-    </div>
-  </section>
-
-  <section class="section" style="padding-top:0">
-    <div class="container">
-      <div class="card cta">
-        <h2>有想法想一起做？</h2>
-        <p class="muted" style="max-width:52ch;margin-inline:auto">遊戲原型、AI Agent 工作流、MCP 工具或互動音訊，都歡迎來聊聊。</p>
-        <div class="btn-row">
-          <a class="btn btn-primary" href="/contact/">聯絡我</a>
-          <a class="btn" href="/about/">認識我</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  {posts.length > 0 && <section class="section" aria-labelledby="posts-title"><div class="container"><div class="section-head"><h2 id="posts-title">實作筆記</h2><a href="/blog/">全部文章 →</a></div><PostList posts={posts} /></div></section>}
+  <section class="section" aria-labelledby="about-title"><div class="container about-strip"><div><p class="eyebrow">About the maker</p><h2 id="about-title">把想法做出來，<br />把過程留下來。</h2></div><div><p>這裡是我的作品與實作筆記。我把遊戲、聲音與 AI 工具放進實際題目，也把選擇、測試和仍未完成的部分留在案例裡。你可以從公開的作品開始，沿著過程認識我。</p><a href="/about/">更多關於竣傑 →</a></div></div></section>
+  <section class="section compact-section"><div class="container"><div class="card cta"><p class="eyebrow">Let's talk</p><h2>有具體想法，聊聊怎麼做。</h2><p class="muted">帶著想解決的問題、已有的作品，或一段實作心得來交流。</p><a class="btn btn-primary" href="/contact/">找到我</a></div></div></section>
 </BaseLayout>

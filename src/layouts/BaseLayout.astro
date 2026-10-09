@@ -3,6 +3,8 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE, SOCIALS } from '../consts';
+import { getPosts } from '../lib/content';
+const hasPosts = (await getPosts()).length > 0;
 
 interface Props {
   title?: string;
@@ -50,10 +52,10 @@ const ld = jsonLd ?? null;
     {noindex && <meta name="robots" content="noindex" />}
     <meta name="author" content={SITE.author} />
     <meta name="generator" content={Astro.generator} />
-    <meta name="theme-color" content="#0B1120" media="(prefers-color-scheme: dark)" />
-    <meta name="theme-color" content="#F8FAFC" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#20252B" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#F3EBDD" media="(prefers-color-scheme: light)" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="alternate" type="application/rss+xml" title={`${SITE.name} 文章`} href={new URL('/rss.xml', Astro.site)} />
+    {hasPosts && <link rel="alternate" type="application/rss+xml" title={`${SITE.name} 文章`} href={new URL('/rss.xml', Astro.site)} />}
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <!-- Open Graph / Twitter -->
@@ -81,17 +83,17 @@ const ld = jsonLd ?? null;
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&family=Inter:wght@400;600;700&display=swap"
     />
 
-    <!-- 主題：先讀已儲存偏好，否則跟隨系統；放在 head 避免閃爍 -->
+    <!-- 主題：先讀已儲存偏好，否則使用暖紙淺色；放在 head 避免閃爍 -->
     <script is:inline>
       (() => {
         try {
           const saved = localStorage.getItem('theme');
           const theme = saved === 'light' || saved === 'dark'
             ? saved
-            : (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+            : 'light';
           document.documentElement.dataset.theme = theme;
         } catch (_) {}
       })();

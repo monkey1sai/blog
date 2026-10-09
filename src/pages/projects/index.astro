@@ -1,47 +1,57 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
-import { PROJECT_CATEGORIES } from '../../consts';
+import { PROJECT_CATEGORIES, PROJECT_STATUS } from '../../consts';
 import { getProjects } from '../../lib/content';
-
 const projects = await getProjects();
-const used = new Set(projects.map((p) => p.data.category));
-const categories = (Object.keys(PROJECT_CATEGORIES) as (keyof typeof PROJECT_CATEGORIES)[]).filter((c) => used.has(c));
+const categories = Object.entries(PROJECT_CATEGORIES).filter(([key]) => projects.some((p) => p.data.category === key));
+const statuses = Object.entries(PROJECT_STATUS).filter(([key]) => projects.some((p) => p.data.status === key));
 ---
-
-<BaseLayout title="作品集" description="許竣傑的作品集：瀏覽器遊戲、AI Agent、音訊合成、MCP 工具與 Agent 技能商店。">
-  <div class="container">
-    <header class="page-header">
-      <p class="eyebrow">Projects</p>
-      <h1>作品集</h1>
-      <p>遊戲、AI 代理、聲音與工具。點進每件作品可以看到說明與公開連結。</p>
-    </header>
-
-    <div class="filter" role="group" aria-label="依類型篩選" data-filter hidden>
-      <button type="button" data-value="all" aria-pressed="true">全部</button>
-      {categories.map((c) => (
-        <button type="button" data-value={c} aria-pressed="false">{PROJECT_CATEGORIES[c]}</button>
-      ))}
+<BaseLayout title="作品集" description="許竣傑的遊戲、AI 工具與工程實驗。依題目和階段探索作品，閱讀選擇、協作與驗證過程。">
+  <div class="container" style="padding-bottom:var(--space-section)">
+    <header class="page-header"><p class="eyebrow">Projects / Work in context</p><h1>作品與實作</h1><p>能玩的作品、能用的工具，以及還在探索的問題。點進案例，看每一次選擇與目前的證據。</p></header>
+    <div data-filters hidden>
+      <fieldset class="filter-set"><legend>依題目</legend><div class="filter" data-filter="category"><button type="button" data-value="all" aria-pressed="true">全部題目</button>{categories.map(([key, label]) => <button type="button" data-value={key} aria-pressed="false">{label}</button>)}</div></fieldset>
+      <fieldset class="filter-set"><legend>依階段</legend><div class="filter" data-filter="status"><button type="button" data-value="all" aria-pressed="true">全部階段</button>{statuses.map(([key, label]) => <button type="button" data-value={key} aria-pressed="false">{label}</button>)}</div></fieldset>
+      <button class="btn" type="button" data-reset>清除篩選</button>
     </div>
-
-    <div class="grid" style="padding-bottom:var(--space-section)" aria-live="polite">
-      {projects.map((p) => <ProjectCard project={p} />)}
-    </div>
+    <p class="filter-summary" role="status" aria-live="polite" data-count>共 {projects.length} 件作品</p>
+    <div class="grid">{projects.map((p) => <ProjectCard project={p} headingLevel="h2" />)}</div>
+    <div class="card empty-state" data-empty hidden><p>這組條件還沒有作品。</p><button class="btn" type="button" data-reset>顯示全部作品</button></div>
+    <aside class="evidence-explainer"><strong>怎麼看這些作品</strong><p style="margin-bottom:0">狀態表示目前的開發階段，不代表所有功能都已驗收。各案例另外保留版本、測試範圍與限制；沒有實測的部分，不當作完成成果。</p></aside>
+    <a href="/contact/">對某個題目有想法？找到我 →</a>
   </div>
 </BaseLayout>
-
-<script is:inline>
-  (() => {
-    const bar = document.querySelector('[data-filter]');
-    if (!bar) return;
-    bar.hidden = false; // 沒有 JS 時不顯示篩選列，直接列出全部作品
-    const cards = document.querySelectorAll('[data-project]');
-    bar.addEventListener('click', (e) => {
-      const btn = e.target.closest('button[data-value]');
-      if (!btn) return;
-      const v = btn.dataset.value;
-      bar.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
-      cards.forEach((card) => { card.hidden = v !== 'all' && card.dataset.category !== v; });
+<script>
+  const filters = document.querySelector<HTMLElement>('[data-filters]');
+  if (filters) {
+    filters.hidden = false;
+    const cards = [...document.querySelectorAll<HTMLElement>('[data-project]')];
+    const state: Record<string, string> = { category: 'all', status: 'all' };
+    const update = () => {
+      let count = 0;
+      for (const card of cards) {
+        card.hidden = !Object.entries(state).every(([key, value]) => value === 'all' || card.dataset[key] === value);
+        if (!card.hidden) count++;
+      }
+      filters.querySelectorAll<HTMLElement>('[data-filter]').forEach((group) => {
+        group.querySelectorAll<HTMLButtonElement>('button').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.value === state[group.dataset.filter!])));
+      });
+      document.querySelector('[data-count]')!.textContent = `顯示 ${count} / ${cards.length} 件作品`;
+      document.querySelector<HTMLElement>('[data-empty]')!.hidden = count !== 0;
+    };
+    filters.addEventListener('click', (event) => {
+      if (!(event.target instanceof Element)) return;
+      const button = event.target.closest<HTMLButtonElement>('button[data-value]');
+      const group = button?.closest<HTMLElement>('[data-filter]');
+      if (!button || !group) return;
+      state[group.dataset.filter!] = button.dataset.value!;
+      update();
     });
-  })();
+    document.querySelectorAll('[data-reset]').forEach((button) => button.addEventListener('click', () => {
+      state.category = state.status = 'all';
+      update();
+      filters.querySelector<HTMLButtonElement>('button')?.focus();
+    }));
+  }
 </script>

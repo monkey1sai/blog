@@ -13,7 +13,7 @@ links:
 
 graphrag_saas 是一個以 FastAPI 建構的 GraphRAG 後端實驗專案。
 
-## 作品重點
+## 我的選擇
 
 - **資料匯入**：從資料夾匯入 DOCX、PDF、XLSX 與圖片（OCR），切塊後建立索引。
 - **查詢 API**：以階層式檢索搭配整合器組合回答。

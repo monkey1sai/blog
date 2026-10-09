@@ -1,6 +1,9 @@
 ---
 import { NAV, SITE } from '../consts';
 import ThemeToggle from './ThemeToggle.astro';
+import { getPosts } from '../lib/content';
+const hasPosts = (await getPosts()).length > 0;
+const navigation = NAV.filter((item) => item.href !== '/blog/' || hasPosts);
 
 const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const isCurrent = (href: string) => {
@@ -15,7 +18,7 @@ const isCurrent = (href: string) => {
       <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
         <defs>
           <linearGradient id="bm" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#22D3EE" /><stop offset="1" stop-color="#A78BFA" />
+            <stop offset="0" stop-color="#8E3945" /><stop offset="1" stop-color="#B58A4A" />
           </linearGradient>
         </defs>
         <rect x="1" y="1" width="30" height="30" rx="8" fill="none" stroke="url(#bm)" stroke-width="2" />
@@ -25,7 +28,7 @@ const isCurrent = (href: string) => {
       <span class="brand-name">許竣傑 <span>· AI Craft Lab</span></span>
     </a>
     <nav class="nav" aria-label="主選單">
-      {NAV.map((item) => (
+      {navigation.map((item) => (
         <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>
       ))}
     </nav>

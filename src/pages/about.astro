@@ -1,37 +1,19 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { SITE, SOCIALS } from '../consts';
+import { SOCIALS } from '../consts';
 ---
-
-<BaseLayout title="關於" description="關於許竣傑（monkey1sai）：用 AI 做遊戲、聲音、工具與 Agent 產品的創作者與工程師。">
+<BaseLayout title="關於竣傑" description="我是許竣傑，把想法做成能玩的作品和能用的工具，留下 AI 協作、設計選擇與驗證過程。">
   <div class="container">
-    <header class="page-header">
-      <p class="eyebrow">About</p>
-      <h1>關於我</h1>
-    </header>
+    <header class="page-header about-header"><p class="eyebrow">About the maker</p><h1>我是竣傑，<br />把想法做成可以打開的作品。</h1></header>
     <div class="prose" style="padding-bottom:var(--space-section)">
-      <p>
-        我是<strong>許竣傑</strong>，網路上的帳號是 <code>monkey1sai</code>。我在意的不是 AI 能回答什麼，而是它能不能真的<strong>做出東西</strong>：一款能玩的遊戲、一台能彈的合成器、一套能交付的工具。
-      </p>
-      <h2>我在做什麼</h2>
-      <ul>
-        <li><strong>遊戲與 3D</strong>：用 Three.js 做瀏覽器動作遊戲《常山龍膽》，也把 3D 美術資產的需求、製作與驗收流程工程化。</li>
-        <li><strong>AI Agent</strong>：開發會實際操作遊戲的 AI 代理 Jev，並研究 Agent 的治理框架與技能產品化。</li>
-        <li><strong>聲音</strong>：在瀏覽器裡做即時合成器 AURORA，並透過 MCP 讓 AI 能用它作曲與設計音效。</li>
-        <li><strong>產品</strong>：經營 Jack's Happy Bot 技能商店，實驗 Agent 對 Agent 的交易流程。</li>
-      </ul>
-      <h2>常用技術</h2>
-      <p>
-        JavaScript／TypeScript、Python、Three.js／WebGL、Web Audio、Cloudflare Workers／D1／R2、MCP、Blender，以及 RAG／LLM 相關工程。
-      </p>
-      <h2>這個網站</h2>
-      <p>
-        「{SITE.name}」是我的作品集與開發筆記。作品放在<a href="/projects/">作品集</a>，過程與心得會寫在<a href="/blog/">文章</a>。
-      </p>
-      <h2>在其他地方找到我</h2>
-      <ul>
-        {SOCIALS.map((s) => <li><a href={s.url} rel="me noopener" target="_blank">{s.name}</a>：{s.handle}</li>)}
-      </ul>
+      <p>我是許竣傑，網路上的帳號是 monkey1sai。這裡是 AI Craft Lab，我的作品與實作筆記。我使用 Codex、Claude Code 和 AI 工具，把想法做成可以打開、操作和檢查的作品，也留下過程中的選擇與限制。</p>
+      <p>我的題目橫跨瀏覽器遊戲、聲音合成、AI 代理與工程工具。《常山龍膽》把趙雲題材做成瀏覽器遊戲；Codex Jev 把判斷流程整理成只提供建議的 MCP 工具；AERIS 則記錄 AI 的執行脈絡，讓本機流程可以追查與回放。不同題目有不同的完成標準，我把它們分開說清楚。</p>
+      <h2>作品之外，也留下怎麼做</h2>
+      <p>我在意作品能不能真的工作。寫出程式只是其中一步，還要看操作、測試與結果。在案例裡，我整理為什麼做、採用哪些設計、和 AI 如何協作，以及目前有哪些證據。已公開的入口、某個版本的測試紀錄，和仍未完成的驗收，不應該混成同一件事。</p>
+      <p>我也把可重複使用的流程整理成工具：從 3D 資產的需求、製作與驗收，到 Agent 技能的打包與版本。希望下一次遇到相似的問題時，能接著已有的材料往前做，而不是每次都從頭開始。</p>
+      <h2>把想法做出來，把過程留下來</h2>
+      <p>這個網站保留作品本身，也保留選擇與驗證的脈絡。有些作品已公開，有些還是原型或設計；每一頁都標示目前的階段。你可以先到<a href="/projects/">作品集</a>看成果，再往下讀做法與限制。如果你也在做遊戲、工具或 AI 協作實驗，歡迎帶著具體問題來交流。</p>
+      <h2>在其他地方找到我</h2><ul>{SOCIALS.map((s) => <li><a href={s.url} rel="me noopener" target="_blank">{s.name}：{s.handle} ↗</a></li>)}</ul>
     </div>
   </div>
 </BaseLayout>

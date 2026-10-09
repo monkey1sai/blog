@@ -8,7 +8,7 @@ const posts = await getPosts();
 const used = [...new Set(posts.map((p) => p.data.category))];
 ---
 
-<BaseLayout title="文章" description="許竣傑的開發紀錄與技術筆記：AI Agent、遊戲開發、創意程式與工程實作。">
+<BaseLayout noindex={posts.length === 0} title="文章" description="許竣傑的開發紀錄與技術筆記：AI Agent、遊戲開發、創意程式與工程實作。">
   <div class="container" style="padding-bottom:var(--space-section)">
     <header class="page-header">
       <p class="eyebrow">Dev Notes</p>
@@ -20,6 +20,6 @@ const used = [...new Set(posts.map((p) => p.data.category))];
         </ul>
       )}
     </header>
-    <PostList posts={posts} />
+    {posts.length > 0 ? <PostList posts={posts} /> : <p><a href="/projects/">先到作品集看實作與過程 →</a></p>}
   </div>
 </BaseLayout>
