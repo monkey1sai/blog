@@ -1,48 +1,95 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-const songs = [
-  { id: 'gd9sAPLxiXg', title: '愛的大能 The Power of His Love', date: '2026-10-17', length: '約 5 分鐘',
-    intro: '一首獻給耶穌的鋼琴敬拜曲。想寫的不是哀傷，而是被愛托住後重新站起來的勇氣。D→E 大調、72 BPM，主奏是 AURORA Ivory Hall Grand 平台鋼琴，橋段不斷攀升，最後全音升調進入高潮。',
-    tags: ['鋼琴敬拜', '敬拜讚美', 'AURORA MCP', 'AI Music'] },
-  { id: 'PmW7T8YyKDs', title: '夢的柔軟處 Where Dreams Turn Soft', date: '2026-10-17', length: '近 5 分鐘',
-    intro: '想寫「夢想」最溫柔的那一面：不是衝刺，而是被輕輕接住。E♭ 大調、70 BPM，沒有鼓，只有 AURORA Felt Lullaby 毛氈鋼琴與呼吸；副歌逐次加入豎琴、弦樂微光與天使合唱。',
-    tags: ['療癒音樂', '毛氈鋼琴', '純音樂', 'AURORA MCP'] },
-  { id: 'dlcqnB9_3kg', title: '嘴笨的人（伴奏初稿）', date: '2026-10-17', length: '56 秒',
-    intro: '一首寫給重要的人的情歌。講一個嘴笨的人，話說不好，但道歉和愛都是真心的。這是器樂伴奏初稿：74 BPM ambient 編曲，Rosewood Cello 大提琴唱主旋律，歌詞與人聲之後再補。',
-    tags: ['情歌', '大提琴', '伴奏', 'AURORA MCP'] },
-  { id: 'Gifg-by167Q', title: '宇宙漂浮 Cosmic Drift', date: '2026-10-17', length: '33 秒',
-    intro: '原本是為一支太空漂浮短片寫的配樂。A 小調、62 BPM，稀疏、留白多，像在無重力裡慢慢翻身。主旋律是 AURORA 物理模型拉弓弦樂，用巨集自動化弓壓和空間感。',
-    tags: ['Ambient', '太空音樂', '配樂', 'AURORA MCP'] },
-];
+import { songs as raw } from '../data/songs';
+const songs = [...raw].sort((a, b) => b.date.localeCompare(a.date));
+const f = songs[0];
+const tags = [...new Set(songs.flatMap((s) => s.tags))];
+const PAGE = 12;
 ---
 <BaseLayout title="音樂" description="許竣傑用 AURORA MCP 與 AI 協作創作的歌曲與配樂。">
   <div class="container" style="padding-bottom:var(--space-section)">
-    <header class="page-header"><p class="eyebrow">Music / Original works</p><h1>我的創作音樂</h1><p>用 AURORA MCP 讓 AI agent 操作合成器與編曲，我負責題目、方向和最後的耳朵。每首都可以在 YouTube 完整收聽。</p></header>
-    <div class="music-list">
-      {songs.map((s) => (
-        <article class="card song">
-          <div class="song-video"><iframe src={`https://www.youtube-nocookie.com/embed/${s.id}`} title={s.title} loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-          <div class="song-body">
-            <h2>{s.title}</h2>
-            <p class="song-meta"><time datetime={s.date}>{s.date}</time> · {s.length}</p>
-            <p>{s.intro}</p>
-            <ul class="song-tags">{s.tags.map((t) => <li>{t}</li>)}</ul>
-            <a href={`https://youtu.be/${s.id}`} target="_blank" rel="noopener">在 YouTube 收聽 ↗</a>
-          </div>
-        </article>
-      ))}
+    <header class="page-header"><p class="eyebrow">Music / Original works · 共 {songs.length} 首</p><h1>我的創作音樂</h1><p>用 AURORA MCP 讓 AI agent 操作合成器與編曲，我負責題目、方向和最後的耳朵。點下方任一首即可在上方播放。</p></header>
+    <section class="card featured" id="featured">
+      <div class="f-video" id="f-video" data-id={f.id}>
+        <button class="f-play" id="f-play" aria-label={`播放 ${f.title}`}><img id="f-thumb" src={`https://i.ytimg.com/vi/${f.id}/hqdefault.jpg`} alt="" /><span>▶</span></button>
+      </div>
+      <div class="f-body">
+        <p class="eyebrow" id="f-label">最新作品</p>
+        <h2 id="f-title">{f.title}</h2>
+        <p class="song-meta" id="f-meta">{f.date} · {f.length}</p>
+        <p class="f-intro" id="f-intro">{f.intro}</p>
+        <a id="f-link" href={`https://youtu.be/${f.id}`} target="_blank" rel="noopener">在 YouTube 收聽 ↗</a>
+      </div>
+    </section>
+    <div class="controls">
+      <input type="search" id="q" placeholder="搜尋曲名、介紹…" aria-label="搜尋歌曲" />
+      <div class="chips"><button class="chip on" data-tag="">全部</button>{tags.map((t) => <button class="chip" data-tag={t}>{t}</button>)}</div>
     </div>
+    <ol class="song-list" id="list">
+      {songs.map((s, i) => (
+        <li class:list={['row', { hidden: i >= PAGE }]} data-id={s.id} data-tags={s.tags.join('|')} data-text={(s.title + ' ' + s.intro + ' ' + s.tags.join(' ')).toLowerCase()} data-title={s.title} data-meta={`${s.date} · ${s.length}`} data-intro={s.intro}>
+          <button class="row-btn" aria-label={`播放 ${s.title}`}>
+            <img src={`https://i.ytimg.com/vi/${s.id}/mqdefault.jpg`} alt="" loading="lazy" width="96" height="54" />
+            <span class="row-main"><strong>{s.title}</strong><span class="song-meta">{s.date} · {s.length}</span><span class="row-tags">{s.tags.slice(0, 3).join(' · ')}</span></span>
+          </button>
+        </li>
+      ))}
+    </ol>
+    <p class="empty" id="empty" hidden>找不到符合的歌曲。</p>
+    <button class="more" id="more" hidden={songs.length <= PAGE}>顯示更多</button>
     <p><a href="https://www.youtube.com/@Aicraftlab-f3s" target="_blank" rel="noopener">到 YouTube 頻道看更多 ↗</a></p>
   </div>
 </BaseLayout>
+<script define:vars={{ PAGE }}>
+  const $ = (id) => document.getElementById(id);
+  const rows = [...document.querySelectorAll('#list .row')];
+  let limit = PAGE, tag = '', q = '';
+  function embed(id, autoplay) {
+    $('f-video').innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}${autoplay ? '?autoplay=1' : ''}" title="YouTube" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+  }
+  $('f-play').addEventListener('click', () => embed($('f-video').dataset.id, true));
+  function render() {
+    const m = rows.filter((r) => (!tag || r.dataset.tags.split('|').includes(tag)) && (!q || r.dataset.text.includes(q)));
+    rows.forEach((r) => r.classList.add('hidden'));
+    m.slice(0, limit).forEach((r) => r.classList.remove('hidden'));
+    $('more').hidden = m.length <= limit; $('empty').hidden = m.length > 0;
+  }
+  rows.forEach((r) => r.querySelector('button').addEventListener('click', () => {
+    const d = r.dataset; $('f-video').dataset.id = d.id;
+    $('f-title').textContent = d.title; $('f-meta').textContent = d.meta; $('f-intro').textContent = d.intro;
+    $('f-link').href = `https://youtu.be/${d.id}`; $('f-label').textContent = '正在播放';
+    rows.forEach((x) => x.classList.toggle('active', x === r));
+    embed(d.id, true); $('featured').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }));
+  document.querySelectorAll('.chip').forEach((c) => c.addEventListener('click', () => {
+    document.querySelectorAll('.chip').forEach((x) => x.classList.toggle('on', x === c)); tag = c.dataset.tag; limit = PAGE; render();
+  }));
+  $('q').addEventListener('input', (e) => { q = e.target.value.trim().toLowerCase(); limit = PAGE; render(); });
+  $('more').addEventListener('click', () => { limit += PAGE; render(); });
+</script>
 <style>
-  .music-list { display: grid; gap: 2rem; margin-bottom: 2rem; }
-  .song { display: grid; gap: 1.25rem; grid-template-columns: minmax(0, 1fr); }
-  @media (min-width: 760px) { .song { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: start; } }
-  .song-video { position: relative; aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden; }
-  .song-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-  .song h2 { margin-top: 0; }
+  .featured { display: grid; gap: 1.25rem; margin-bottom: 1.5rem; }
+  @media (min-width: 760px) { .featured { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: start; } }
+  .f-video { position: relative; aspect-ratio: 16/9; border-radius: 8px; overflow: hidden; background: #000; }
+  .f-video :global(iframe), .f-play { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; padding: 0; cursor: pointer; background: none; }
+  .f-play img { width: 100%; height: 100%; object-fit: cover; }
+  .f-play span { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 64px; height: 64px; border-radius: 50%; background: rgba(0,0,0,.65); color: #fff; font-size: 1.6rem; display: grid; place-items: center; }
+  .f-body h2 { margin-top: 0; }
+  .f-intro { display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }
   .song-meta { opacity: .75; font-size: .9em; }
-  .song-tags { display: flex; flex-wrap: wrap; gap: .4rem; list-style: none; padding: 0; margin: 0 0 1rem; }
-  .song-tags li { border: 1px solid currentColor; border-radius: 999px; padding: .1rem .6rem; font-size: .8em; opacity: .8; }
+  .controls { display: grid; gap: .6rem; margin-bottom: 1rem; }
+  #q { width: 100%; padding: .55rem .8rem; border: 1px solid currentColor; border-radius: 8px; background: transparent; color: inherit; font: inherit; opacity: .9; }
+  .chips { display: flex; gap: .4rem; overflow-x: auto; padding-bottom: .25rem; }
+  .chip { flex: none; border: 1px solid currentColor; border-radius: 999px; padding: .15rem .7rem; font-size: .8em; background: transparent; color: inherit; opacity: .7; cursor: pointer; }
+  .chip.on { opacity: 1; font-weight: 700; }
+  .song-list { list-style: none; padding: 0; margin: 0 0 1rem; display: grid; gap: .5rem; }
+  @media (min-width: 760px) { .song-list { grid-template-columns: 1fr 1fr; } }
+  .row.hidden { display: none; }
+  .row-btn { display: flex; gap: .75rem; align-items: center; width: 100%; text-align: left; padding: .4rem; border: 1px solid transparent; border-radius: 8px; background: transparent; color: inherit; font: inherit; cursor: pointer; }
+  .row-btn:hover, .row.active .row-btn { border-color: currentColor; }
+  .row-btn img { width: 96px; height: 54px; object-fit: cover; border-radius: 6px; flex: none; }
+  .row-main { display: grid; min-width: 0; }
+  .row-main strong { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .row-tags { font-size: .75em; opacity: .65; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .more { display: block; margin: 0 auto 1.5rem; padding: .5rem 1.5rem; border: 1px solid currentColor; border-radius: 999px; background: transparent; color: inherit; cursor: pointer; }
 </style>

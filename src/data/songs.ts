@@ -1,0 +1,16 @@
+// 每日新增歌曲：在陣列最前面加一筆即可（最新在前）。id = YouTube 影片 ID。
+export interface Song { id: string; title: string; date: string; length: string; intro: string; tags: string[]; }
+export const songs: Song[] = [
+  { id: 'gd9sAPLxiXg', title: '愛的大能 The Power of His Love', date: '2026-10-17', length: '約 5 分鐘',
+    intro: '一首獻給耶穌的鋼琴敬拜曲。想寫的不是哀傷，而是被愛托住後重新站起來的勇氣。D→E 大調、72 BPM，主奏是 AURORA Ivory Hall Grand 平台鋼琴，橋段不斷攀升，最後全音升調進入高潮。',
+    tags: ['鋼琴敬拜', '敬拜讚美', 'AURORA MCP', 'AI Music'] },
+  { id: 'PmW7T8YyKDs', title: '夢的柔軟處 Where Dreams Turn Soft', date: '2026-10-17', length: '近 5 分鐘',
+    intro: '想寫「夢想」最溫柔的那一面：不是衝刺，而是被輕輕接住。E♭ 大調、70 BPM，沒有鼓，只有 AURORA Felt Lullaby 毛氈鋼琴與呼吸；副歌逐次加入豎琴、弦樂微光與天使合唱。',
+    tags: ['療癒音樂', '毛氈鋼琴', '純音樂', 'AURORA MCP'] },
+  { id: 'dlcqnB9_3kg', title: '嘴笨的人（伴奏初稿）', date: '2026-10-17', length: '56 秒',
+    intro: '一首寫給重要的人的情歌。講一個嘴笨的人，話說不好，但道歉和愛都是真心的。這是器樂伴奏初稿：74 BPM ambient 編曲，Rosewood Cello 大提琴唱主旋律，歌詞與人聲之後再補。',
+    tags: ['情歌', '大提琴', '伴奏', 'AURORA MCP'] },
+  { id: 'Gifg-by167Q', title: '宇宙漂浮 Cosmic Drift', date: '2026-10-17', length: '33 秒',
+    intro: '原本是為一支太空漂浮短片寫的配樂。A 小調、62 BPM，稀疏、留白多，像在無重力裡慢慢翻身。主旋律是 AURORA 物理模型拉弓弦樂，用巨集自動化弓壓和空間感。',
+    tags: ['Ambient', '太空音樂', '配樂', 'AURORA MCP'] },
+];
