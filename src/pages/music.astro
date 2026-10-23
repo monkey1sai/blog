@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const songs = [
+  { id: 'gd9sAPLxiXg', title: '愛的大能 The Power of His Love', date: '2026-10-17', length: '約 5 分鐘',
+    intro: '一首獻給耶穌的鋼琴敬拜曲。想寫的不是哀傷，而是被愛托住後重新站起來的勇氣。D→E 大調、72 BPM，主奏是 AURORA Ivory Hall Grand 平台鋼琴，橋段不斷攀升，最後全音升調進入高潮。',
+    tags: ['鋼琴敬拜', '敬拜讚美', 'AURORA MCP', 'AI Music'] },
+  { id: 'PmW7T8YyKDs', title: '夢的柔軟處 Where Dreams Turn Soft', date: '2026-10-17', length: '近 5 分鐘',
+    intro: '想寫「夢想」最溫柔的那一面：不是衝刺，而是被輕輕接住。E♭ 大調、70 BPM，沒有鼓，只有 AURORA Felt Lullaby 毛氈鋼琴與呼吸；副歌逐次加入豎琴、弦樂微光與天使合唱。',
+    tags: ['療癒音樂', '毛氈鋼琴', '純音樂', 'AURORA MCP'] },
+  { id: 'dlcqnB9_3kg', title: '嘴笨的人（伴奏初稿）', date: '2026-10-17', length: '56 秒',
+    intro: '一首寫給重要的人的情歌。講一個嘴笨的人，話說不好，但道歉和愛都是真心的。這是器樂伴奏初稿：74 BPM ambient 編曲，Rosewood Cello 大提琴唱主旋律，歌詞與人聲之後再補。',
+    tags: ['情歌', '大提琴', '伴奏', 'AURORA MCP'] },
+  { id: 'Gifg-by167Q', title: '宇宙漂浮 Cosmic Drift', date: '2026-10-17', length: '33 秒',
+    intro: '原本是為一支太空漂浮短片寫的配樂。A 小調、62 BPM，稀疏、留白多，像在無重力裡慢慢翻身。主旋律是 AURORA 物理模型拉弓弦樂，用巨集自動化弓壓和空間感。',
+    tags: ['Ambient', '太空音樂', '配樂', 'AURORA MCP'] },
+];
+---
+<BaseLayout title="音樂" description="許竣傑用 AURORA MCP 與 AI 協作創作的歌曲與配樂。">
+  <div class="container" style="padding-bottom:var(--space-section)">
+    <header class="page-header"><p class="eyebrow">Music / Original works</p><h1>我的創作音樂</h1><p>用 AURORA MCP 讓 AI agent 操作合成器與編曲，我負責題目、方向和最後的耳朵。每首都可以在 YouTube 完整收聽。</p></header>
+    <div class="music-list">
+      {songs.map((s) => (
+        <article class="card song">
+          <div class="song-video"><iframe src={`https://www.youtube-nocookie.com/embed/${s.id}`} title={s.title} loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+          <div class="song-body">
+            <h2>{s.title}</h2>
+            <p class="song-meta"><time datetime={s.date}>{s.date}</time> · {s.length}</p>
+            <p>{s.intro}</p>
+            <ul class="song-tags">{s.tags.map((t) => <li>{t}</li>)}</ul>
+            <a href={`https://youtu.be/${s.id}`} target="_blank" rel="noopener">在 YouTube 收聽 ↗</a>
+          </div>
+        </article>
+      ))}
+    </div>
+    <p><a href="https://www.youtube.com/@Aicraftlab-f3s" target="_blank" rel="noopener">到 YouTube 頻道看更多 ↗</a></p>
+  </div>
+</BaseLayout>
+<style>
+  .music-list { display: grid; gap: 2rem; margin-bottom: 2rem; }
+  .song { display: grid; gap: 1.25rem; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 760px) { .song { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: start; } }
+  .song-video { position: relative; aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden; }
+  .song-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .song h2 { margin-top: 0; }
+  .song-meta { opacity: .75; font-size: .9em; }
+  .song-tags { display: flex; flex-wrap: wrap; gap: .4rem; list-style: none; padding: 0; margin: 0 0 1rem; }
+  .song-tags li { border: 1px solid currentColor; border-radius: 999px; padding: .1rem .6rem; font-size: .8em; opacity: .8; }
+</style>
