@@ -112,3 +112,13 @@ SITE_URL=https://blog.example.com npm run build
 - 所有案例的段落連結移到正文之前，在手機上也能先挑想讀的內容；不依賴 JavaScript。
 - [內容待辦](docs/content-backlog.md) 列出最值得由作者補充的真實畫面、操作例子與判斷紀錄，不會發布為網站內容。
 - 驗證：`npm run check && npm run build && node scripts/verify-redesign.mjs && node scripts/verify-reader-journey.mjs`。此命令不部署。
+
+## 音樂入口與文章延伸閱讀驗證
+
+- 首頁的最新音樂卡讀取 `src/data/songs.ts`，按日期降冪取一首，不建立播放器。歌曲資料與排程不由這次閱讀動線調整修改。
+- 文章結尾只選實際標籤有交集的公開作品／文章，排除自己及重複項目，最多三筆；沒有交集便省略。開發模式仍可看草稿。
+- 音樂頁維持一次只載入一個點擊啟動的播放器。停用 JavaScript 時顯示全部歌曲的 YouTube 直連；選曲後焦點移到具名稱的播放區。
+- `node --experimental-strip-types scripts/test-music-journey.mjs`：實際標籤交集及記憶體中的 0／1／4／12／13／25 首測試資料，涵蓋篩選、分頁、單一播放器與焦點。
+- `node scripts/test-related-render.mjs`：在暫存 app 內建立測試文章並執行 Astro build，驗證 1／3／0 筆延伸閱讀、自身／重複排除及目標路徑；完成後清理暫存 app，不寫入正式內容。
+- `npm run check && npm run build && node scripts/verify-redesign.mjs && node scripts/verify-reader-journey.mjs && node --experimental-strip-types scripts/verify-music-journey.mjs`：驗證正式輸出與站內連結。
+- DOM 合約測試與靜態輸出不能代替瀏覽器視覺／鍵盤驗收；正式發布前仍應用可存取的預覽檢查 375px 與桌面排版、無 JavaScript、篩選後選曲和顯示更多。

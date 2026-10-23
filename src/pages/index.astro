@@ -3,6 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import PostList from '../components/PostList.astro';
 import { SITE } from '../consts';
+import { songs } from '../data/songs';
+const latestSong = [...songs].sort((a, b) => b.date.localeCompare(a.date))[0];
 import { getFeaturedProjects, getPosts } from '../lib/content';
 const websiteLd = { '@type': 'WebSite', '@id': new URL('/#website', Astro.site).href, name: SITE.name, description: SITE.description, url: new URL('/', Astro.site).href, inLanguage: 'zh-Hant-TW', author: { '@id': new URL('/#person', Astro.site).href } };
 const featured = await getFeaturedProjects(3);
@@ -20,7 +22,7 @@ const practices = [
         <p class="eyebrow">許竣傑的作品與實作筆記</p>
         <h1>把想法做成<br />可玩的作品、<br /><span class="accent">可用的工具。</span></h1>
         <p class="hero-lead">我是許竣傑。我用 Codex、Claude Code 與 AI 工具做遊戲、工具和工程實驗，記錄每次選擇、修正與驗證。</p>
-        <div class="btn-row"><a class="btn btn-primary" href="/projects/">看我的作品</a><a class="btn" href="/about/">認識竣傑</a></div>
+        <div class="btn-row"><a class="btn btn-primary" href="/projects/">看我的作品</a><a class="btn" href="/music/">聽我的音樂</a><a class="btn" href="/about/">認識竣傑</a></div>
       </div>
       <figure class="hero-work">
         <a href="/projects/changshan-longdan/"><img src="/images/projects/changshan-longdan-title.webp" width="1280" height="720" alt="常山龍膽遊戲標題畫面" fetchpriority="high" /></a>
@@ -40,6 +42,16 @@ const practices = [
       <div class="grid-3">{practices.map((p, i) => <article class="method-card"><span class="method-number">0{i + 1}</span><h3>{p.title}</h3><p>{p.text}</p><a href={p.href}>{p.label} →</a></article>)}</div>
     </div>
   </section>
+  {latestSong && <section class="section compact-section" aria-labelledby="latest-song-title">
+    <div class="container"><article class="card latest-song">
+      <div><p class="eyebrow">Latest music</p><h2 id="latest-song-title">最新音樂</h2>
+        <h3><a href="/music/">{latestSong.title}</a></h3>
+        <p class="muted"><time datetime={latestSong.date}>{latestSong.date}</time> · {latestSong.length}</p>
+        <p class="latest-song-intro">{latestSong.intro}</p>
+        <a href="/music/">聽這首，也看看其他創作 →</a>
+      </div>
+    </article></div>
+  </section>}
   {posts.length > 0 && <section class="section" aria-labelledby="posts-title"><div class="container"><div class="section-head"><h2 id="posts-title">實作筆記</h2><a href="/blog/">全部文章 →</a></div><PostList posts={posts} /></div></section>}
   <section class="section" aria-labelledby="about-title"><div class="container about-strip"><div><p class="eyebrow">About the maker</p><h2 id="about-title">把想法做出來，<br />把過程留下來。</h2></div><div><p>這裡是我的作品與實作筆記。我把遊戲、聲音與 AI 工具放進實際題目，也把選擇、測試和仍未完成的部分留在案例裡。你可以從公開的作品開始，沿著過程認識我。</p><a href="/about/">更多關於竣傑 →</a></div></div></section>
   <section class="section compact-section"><div class="container"><div class="card cta"><p class="eyebrow">Let's talk</p><h2>有具體想法，聊聊怎麼做。</h2><p class="muted">帶著想解決的問題、已有的作品，或一段實作心得來交流。</p><a class="btn btn-primary" href="/contact/">找到我</a></div></div></section>
