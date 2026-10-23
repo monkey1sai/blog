@@ -104,3 +104,11 @@ SITE_URL=https://blog.example.com npm run build
 - 正式文章為零時，首頁文章區、全站文章導航與 RSS 入口隱藏。既有 `/blog/` 與 `/rss.xml` 路徑仍保留，避免既有連結失效。開發模式仍可預覽草稿。
 - 所有作品媒體沿用現有檔案；未加入人像、生成圖片、影片嵌入或修改前後比較。
 - 建置後可執行 `node scripts/verify-redesign.mjs` 檢查精選、隱藏文章與素材路徑。
+
+## 閱讀導覽與內容待辦
+
+- `readerGuide`：選填的三段導讀（`takeaway`、`contribution`、`evidence`），只整理案例既有事實。精選卡片會顯示 `takeaway`，案例開頭顯示完整導讀與資料日期。
+- `relatedProjects`：選填的 `{ id, reason }` 陣列（最多三件），使用已公開作品的檔名，寫清楚為什麼值得接著讀。沒有設定時保留回作品集的路徑。不要把議題相近寫成已整合。
+- 所有案例的段落連結移到正文之前，在手機上也能先挑想讀的內容；不依賴 JavaScript。
+- [內容待辦](docs/content-backlog.md) 列出最值得由作者補充的真實畫面、操作例子與判斷紀錄，不會發布為網站內容。
+- 驗證：`npm run check && npm run build && node scripts/verify-redesign.mjs && node scripts/verify-reader-journey.mjs`。此命令不部署。

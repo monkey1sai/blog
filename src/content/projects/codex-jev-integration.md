@@ -2,6 +2,13 @@
 title: Codex Jev｜替 Codex 加上一位只提建議的 MCP 軍師
 subtitle: codex-jev-integration
 summary: 讓 Codex 在挑角色、挑資源、做決策之前，先問 Jev 模型的意見。只給建議：不執行、不啟動代理、不切換模型、不提升權限。85 個離線測試通過。
+readerGuide:
+  takeaway: 讓 Codex 多問一位 MCP 軍師，但只拿建議，不把執行權或核准權交給模型。
+  contribution: 案例重點是建議與執行的邊界，以及把原始碼測試、App 呼叫、CLI 驗收與效益比較分開判斷。
+  evidence: 可讀公開原始碼與離線測試紀錄。App 只驗證部分原生呼叫，CLI 原生驗收仍受阻；尚未證明更快、更省或品質更好。
+relatedProjects:
+  - id: jev-systemone-lab
+    reason: 想再往下看軍師怎麼判斷？這個研究原型測試受限選項與證據審查，不把模型建議當作放行決定。
 category: tool
 tags: [mcp, codex, ai-agent, jev, python]
 techStack: [Python 3.12 標準函式庫, MCP（JSON-RPC over stdio）, TypeSafe Jev API, Codex CLI／App]

@@ -2,6 +2,15 @@
 title: 常山龍膽｜用 AI 協作打造趙雲題材 3D 動作遊戲
 subtitle: changshan-longdan
 summary: 在瀏覽器裡玩的 PS2 風格一騎當千：趙雲單騎對上三百名魏兵。程式碼由 AI 撰寫，趙雲模型由我提供，驗收由我把關。
+readerGuide:
+  takeaway: 三百名敵兵同場的瀏覽器動作遊戲，重點是戰鬥規則、打擊感與效能怎麼取捨。
+  contribution: 我提供趙雲模型、決定方向並把關驗收；程式碼由 AI 撰寫。案例保留素材、實作與驗收的分工。
+  evidence: 可以到 itch.io 試玩，也能看真實截圖與歷史測試紀錄。需要電腦與鍵盤或手把，目前沒有觸控操作；部分視覺與硬體驗收仍未完成。
+relatedProjects:
+  - id: jev-ai
+    reason: 同一個遊戲換成 AI 來操作：看開發版遊玩影片，以及代理目前的限制。
+  - id: mmo-asset-pipeline
+    reason: 想知道遊戲美術如何從需求走到驗收？這套資產管線的首批需求來自常山龍膽。
 category: game
 tags: [browser-game, threejs, webgl, web-audio, voxel, ai-collaboration]
 techStack: [TypeScript, Three.js, WebAudio, Vite, Vitest, Blender]
