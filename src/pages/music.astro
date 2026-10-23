@@ -1,15 +1,16 @@
 ---
+import { MUSIC_PAGE_SIZE } from '../scripts/music';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { songs as raw } from '../data/songs';
 const songs = [...raw].sort((a, b) => b.date.localeCompare(a.date));
 const f = songs[0];
 const tags = [...new Set(songs.flatMap((s) => s.tags))];
-const PAGE = 12;
+const PAGE = MUSIC_PAGE_SIZE;
 ---
 <BaseLayout title="音樂" description="許竣傑用 AURORA MCP 與 AI 協作創作的歌曲與配樂。">
   <div class="container" style="padding-bottom:var(--space-section)">
     <header class="page-header"><p class="eyebrow">Music / Original works · 共 {songs.length} 首</p><h1>我的創作音樂</h1><p>用 AURORA MCP 讓 AI agent 操作合成器與編曲，我負責題目、方向和最後的耳朵。點下方任一首即可在上方播放。</p></header>
-    <section class="card featured" id="featured">
+    {f && <section class="card featured music-interactive" id="featured" tabindex="-1" aria-labelledby="f-title">
       <div class="f-video" id="f-video" data-id={f.id}>
         <button class="f-play" id="f-play" aria-label={`播放 ${f.title}`}><img id="f-thumb" src={`https://i.ytimg.com/vi/${f.id}/hqdefault.jpg`} alt="" /><span>▶</span></button>
       </div>
@@ -20,12 +21,20 @@ const PAGE = 12;
         <p class="f-intro" id="f-intro">{f.intro}</p>
         <a id="f-link" href={`https://youtu.be/${f.id}`} target="_blank" rel="noopener">在 YouTube 收聽 ↗</a>
       </div>
-    </section>
-    <div class="controls">
+    </section>}
+    <noscript>
+      <section class="card" aria-labelledby="nojs-songs-title"><h2 id="nojs-songs-title">直接到 YouTube 聽音樂</h2>
+        <p>目前未啟用 JavaScript，以下連結可直接開啟每首作品。</p>
+        <ul>{songs.map((song) => <li><a href={`https://youtu.be/${song.id}`} target="_blank" rel="noopener">{song.title} ↗</a></li>)}</ul>
+      </section>
+      <style>.music-interactive { display: none !important; }</style>
+    </noscript>
+    {songs.length === 0 && <p>目前還沒有公開歌曲。</p>}
+    <div class="controls music-interactive">
       <input type="search" id="q" placeholder="搜尋曲名、介紹…" aria-label="搜尋歌曲" />
-      <div class="chips"><button class="chip on" data-tag="">全部</button>{tags.map((t) => <button class="chip" data-tag={t}>{t}</button>)}</div>
+      <div class="chips"><button class="chip on" data-tag="" aria-pressed="true">全部</button>{tags.map((t) => <button class="chip" data-tag={t} aria-pressed="false">{t}</button>)}</div>
     </div>
-    <ol class="song-list" id="list">
+    <ol class="song-list music-interactive" id="list">
       {songs.map((s, i) => (
         <li class:list={['row', { hidden: i >= PAGE }]} data-id={s.id} data-tags={s.tags.join('|')} data-text={(s.title + ' ' + s.intro + ' ' + s.tags.join(' ')).toLowerCase()} data-title={s.title} data-meta={`${s.date} · ${s.length}`} data-intro={s.intro}>
           <button class="row-btn" aria-label={`播放 ${s.title}`}>
@@ -35,37 +44,14 @@ const PAGE = 12;
         </li>
       ))}
     </ol>
-    <p class="empty" id="empty" hidden>找不到符合的歌曲。</p>
-    <button class="more" id="more" hidden={songs.length <= PAGE}>顯示更多</button>
+    <p class="empty music-interactive" id="empty" hidden>找不到符合的歌曲。</p>
+    <button class="more music-interactive" id="more" hidden={songs.length <= PAGE}>顯示更多</button>
     <p><a href="https://www.youtube.com/@Aicraftlab-f3s" target="_blank" rel="noopener">到 YouTube 頻道看更多 ↗</a></p>
   </div>
 </BaseLayout>
-<script define:vars={{ PAGE }}>
-  const $ = (id) => document.getElementById(id);
-  const rows = [...document.querySelectorAll('#list .row')];
-  let limit = PAGE, tag = '', q = '';
-  function embed(id, autoplay) {
-    $('f-video').innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}${autoplay ? '?autoplay=1' : ''}" title="YouTube" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
-  }
-  $('f-play').addEventListener('click', () => embed($('f-video').dataset.id, true));
-  function render() {
-    const m = rows.filter((r) => (!tag || r.dataset.tags.split('|').includes(tag)) && (!q || r.dataset.text.includes(q)));
-    rows.forEach((r) => r.classList.add('hidden'));
-    m.slice(0, limit).forEach((r) => r.classList.remove('hidden'));
-    $('more').hidden = m.length <= limit; $('empty').hidden = m.length > 0;
-  }
-  rows.forEach((r) => r.querySelector('button').addEventListener('click', () => {
-    const d = r.dataset; $('f-video').dataset.id = d.id;
-    $('f-title').textContent = d.title; $('f-meta').textContent = d.meta; $('f-intro').textContent = d.intro;
-    $('f-link').href = `https://youtu.be/${d.id}`; $('f-label').textContent = '正在播放';
-    rows.forEach((x) => x.classList.toggle('active', x === r));
-    embed(d.id, true); $('featured').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }));
-  document.querySelectorAll('.chip').forEach((c) => c.addEventListener('click', () => {
-    document.querySelectorAll('.chip').forEach((x) => x.classList.toggle('on', x === c)); tag = c.dataset.tag; limit = PAGE; render();
-  }));
-  $('q').addEventListener('input', (e) => { q = e.target.value.trim().toLowerCase(); limit = PAGE; render(); });
-  $('more').addEventListener('click', () => { limit += PAGE; render(); });
+<script>
+  import { initMusic } from '../scripts/music';
+  initMusic(document);
 </script>
 <style>
   .featured { display: grid; gap: 1.25rem; margin-bottom: 1.5rem; }
@@ -85,6 +71,9 @@ const PAGE = 12;
   .song-list { list-style: none; padding: 0; margin: 0 0 1rem; display: grid; gap: .5rem; }
   @media (min-width: 760px) { .song-list { grid-template-columns: 1fr 1fr; } }
   .row.hidden { display: none; }
+  .featured, .f-body, .controls, .song-list, .row { min-width: 0; }
+  .featured { scroll-margin-top: 6rem; }
+  .chip { min-height: 44px; }
   .row-btn { display: flex; gap: .75rem; align-items: center; width: 100%; text-align: left; padding: .4rem; border: 1px solid transparent; border-radius: 8px; background: transparent; color: inherit; font: inherit; cursor: pointer; }
   .row-btn:hover, .row.active .row-btn { border-color: currentColor; }
   .row-btn img { width: 96px; height: 54px; object-fit: cover; border-radius: 6px; flex: none; }

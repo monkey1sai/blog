@@ -276,3 +276,8 @@ a.chip:hover { color: var(--accent); border-color: var(--accent); }
 .next-reading-list p, .case-contact { color: var(--muted); }
 .case-contact { margin: 1.5rem 0 0; }
 @media (max-width: 800px) { .reader-guide dl { grid-template-columns: 1fr; gap: 1rem; } }
+
+/* Compact text-first music invitation; no player or generated media. */
+.latest-song { max-width: var(--reading); }
+.latest-song h2 { font-size: 1.1rem; color: var(--muted); }
+.latest-song-intro { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
