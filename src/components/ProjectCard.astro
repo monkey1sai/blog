@@ -5,7 +5,7 @@ import StatusBadge from './StatusBadge.astro';
 import ProjectCover from './ProjectCover.astro';
 interface Props { project: Project; headingLevel?: 'h2' | 'h3' }
 const { project, headingLevel = 'h3' } = Astro.props;
-const { title, subtitle, summary, category, status, statusLabel, techStack } = project.data;
+const { title, subtitle, summary, category, status, statusLabel, techStack, readerGuide } = project.data;
 const Heading = headingLevel;
 ---
 <article class="card project-card" data-project data-category={category} data-status={status}>
@@ -18,6 +18,7 @@ const Heading = headingLevel;
     <Heading class="h3" style="font-size:1.15rem"><a href={`/projects/${project.id}/`}>{title}</a></Heading>
     {subtitle && <p class="project-subtitle">{subtitle}</p>}
     <p>{summary}</p>
+    {readerGuide && <p class="reader-takeaway"><strong>這件作品值得看：</strong>{readerGuide.takeaway}</p>}
     {statusLabel && <p class="evidence-note">範圍：{statusLabel}</p>}
     {techStack.length > 0 && (
       <ul class="chips" aria-label="技術">

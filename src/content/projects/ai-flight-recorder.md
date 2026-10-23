@@ -2,6 +2,13 @@
 title: AERIS｜讓 AI 的執行過程可追查、可回放
 subtitle: ai-flight-recorder
 summary: AI／代理的黑盒子飛行記錄器：記下每次執行做了什麼、改了什麼、依據哪些證據，事後可以查詢和回放。目前是可在本機跑起來的 MVP。
+readerGuide:
+  takeaway: 替 AI 執行過程留下可追查的紀錄，區分觀察、推論、代理自述與已驗證的證據。
+  contribution: 案例重點是證據分級與失敗狀態的設計：沒有回放證據就不標已驗證，API 失敗也不假裝成功。
+  evidence: 目前是本機 MVP，可看公開原始碼與歷史驗證紀錄，沒有線上展示。真實 Google 帳號驗收未完成；封面為概念插畫，非產品畫面。
+relatedProjects:
+  - id: codex-jev-integration
+    reason: 延伸看另一種 AI 邊界設計：Codex Jev 限制模型的建議權限。兩者是不同專案，這裡沒有宣稱已整合。
 category: tool
 tags: [observability, ai-agent, fastapi, nextjs, codex]
 techStack: [FastAPI, Next.js, Postgres, Redis, MinIO, OpenTelemetry, Docker Compose]

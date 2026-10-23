@@ -8,9 +8,9 @@ const websiteLd = { '@type': 'WebSite', '@id': new URL('/#website', Astro.site).
 const featured = await getFeaturedProjects(3);
 const posts = (await getPosts()).slice(0, 3);
 const practices = [
-  { title: '把想法做成作品', text: '從瀏覽器遊戲、聲音合成，到 AI 工具與工程實驗。', href: '/projects/' },
-  { title: '和 AI 一起實作', text: '在案例裡交代設計選擇、AI 協作方式與人的判斷。', href: '/projects/codex-jev-integration/' },
-  { title: '讓結果有跡可循', text: '保留測試、公開入口與限制，不把設計當成已完成。', href: '/projects/ai-flight-recorder/' },
+  { title: '把想法做成作品', text: '從瀏覽器遊戲、聲音合成，到 AI 工具與工程實驗。', href: '/projects/changshan-longdan/', label: '看常山龍膽的設計取捨' },
+  { title: '和 AI 一起實作', text: '在案例裡交代設計選擇、AI 協作方式與人的判斷。', href: '/projects/codex-jev-integration/', label: '看 Codex Jev 的協作邊界' },
+  { title: '讓結果有跡可循', text: '保留測試、公開入口與限制，不把設計當成已完成。', href: '/projects/ai-flight-recorder/', label: '看 AERIS 怎麼區分證據' },
 ];
 ---
 <BaseLayout jsonLd={websiteLd}>
@@ -37,7 +37,7 @@ const practices = [
   </section>
   <section class="section method-section" aria-labelledby="method-title">
     <div class="container"><div class="section-head"><div><p class="eyebrow">How I make</p><h2 id="method-title">我怎麼把問題往前推</h2></div></div>
-      <div class="grid-3">{practices.map((p, i) => <article class="method-card"><span class="method-number">0{i + 1}</span><h3>{p.title}</h3><p>{p.text}</p><a href={p.href}>從作品看做法 →</a></article>)}</div>
+      <div class="grid-3">{practices.map((p, i) => <article class="method-card"><span class="method-number">0{i + 1}</span><h3>{p.title}</h3><p>{p.text}</p><a href={p.href}>{p.label} →</a></article>)}</div>
     </div>
   </section>
   {posts.length > 0 && <section class="section" aria-labelledby="posts-title"><div class="container"><div class="section-head"><h2 id="posts-title">實作筆記</h2><a href="/blog/">全部文章 →</a></div><PostList posts={posts} /></div></section>}

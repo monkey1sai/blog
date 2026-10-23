@@ -13,6 +13,16 @@ const projects = defineCollection({
     /** 副標，通常放 repo 名稱 */
     subtitle: z.string().optional(),
     summary: z.string().max(140),
+    /** 讀者導讀只整理內文已有的事實，不取代驗證紀錄。 */
+    readerGuide: z.object({
+      takeaway: z.string().max(100),
+      contribution: z.string().max(160),
+      evidence: z.string().max(180),
+    }).optional(),
+    relatedProjects: z.array(z.object({
+      id: kebab,
+      reason: z.string().max(120),
+    })).max(3).default([]),
     category: z.enum(['game', 'ai-agent', 'audio', 'tool', 'product', 'research', 'design']),
     tags: z.array(kebab).default([]),
     techStack: z.array(z.string()).default([]),

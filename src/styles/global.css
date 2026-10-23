@@ -251,8 +251,6 @@ a.chip:hover { color: var(--accent); border-color: var(--accent); }
 .filter-set legend { font-size:.875rem; color:var(--muted); margin-bottom:.5rem; }
 .filter-set .filter { margin-bottom:0; }
 .filter-summary { font-size:.875rem; color:var(--muted); margin:1.5rem 0; }
-.project-toc ol { margin:0; padding-left:1.3rem; }
-.project-toc li { margin-block:.5rem; }
 .prose h2 { scroll-margin-top:9rem; }
 .evidence-explainer { margin-block:2rem; padding:1.25rem; border-left:3px solid var(--brass); background:var(--card); color:var(--muted); }
 .contact-note { margin-block:2rem; }
@@ -261,3 +259,20 @@ a.chip:hover { color: var(--accent); border-color: var(--accent); }
 .chip, .badge, .project-subtitle, .eyebrow, .project-meta { font-size:.875rem; }
 @media (max-width:800px) { .hero-grid, .about-strip { grid-template-columns:1fr; gap:2rem; } .hero-work { transform:none; } .hero { padding-top:2.5rem; } }
 @media (max-width:640px) { .brand-name span { display:inline; font-size:.8rem; } .hero h1 { font-size:2.1rem; } .detail-aside { position:static; } }
+
+/* Reader journey: factual orientation before detail, no client JS required. */
+.reader-guide { margin-block: .5rem 1.5rem; border-top: 3px solid var(--brass); }
+.reader-guide h2 { font-size: 1.35rem; }
+.reader-guide dl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; margin: 1rem 0; }
+.reader-guide dt { font-weight: 700; color: var(--accent); margin-bottom: .4rem; }
+.reader-guide dd { margin: 0; }
+.reader-guide-date { color: var(--muted); font-size: .875rem; margin-bottom: 0; }
+.case-section-nav { display: flex; flex-wrap: wrap; gap: .25rem 1rem; align-items: center; margin-bottom: 1.5rem; font-size: .9rem; }
+.case-section-nav a { display: inline-flex; align-items: center; min-height: 44px; }
+.reader-takeaway { padding-top: .75rem; border-top: 1px solid var(--border); font-size: .9rem; }
+.next-reading { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+.next-reading h2 { font-size: 1.5rem; }
+.next-reading-list { list-style: none; display: grid; gap: 1rem; padding: 0; margin: 1rem 0; }
+.next-reading-list p, .case-contact { color: var(--muted); }
+.case-contact { margin: 1.5rem 0 0; }
+@media (max-width: 800px) { .reader-guide dl { grid-template-columns: 1fr; gap: 1rem; } }

@@ -16,6 +16,11 @@ const { project } = Astro.props;
 const { Content, headings } = await render(project);
 const sections = headings.filter((heading) => heading.depth === 2);
 const d = project.data;
+const projects = await getProjects();
+const related = d.relatedProjects.map((item) => ({
+  ...item,
+  project: projects.find((candidate) => candidate.id === item.id && candidate.id !== project.id),
+})).filter((item) => item.project);
 
 const ld = {
   '@type': 'CreativeWork',
@@ -50,13 +55,33 @@ const ld = {
       )}
     </header>
 
+    {d.readerGuide && <section class="card reader-guide" aria-labelledby="reader-guide-title">
+      <p class="eyebrow">Case study / Start here</p>
+      <h2 id="reader-guide-title">先用 30 秒認識這件作品</h2>
+      <dl>
+        <div><dt>做了什麼</dt><dd>{d.readerGuide.takeaway}</dd></div>
+        <div><dt>看哪些判斷</dt><dd>{d.readerGuide.contribution}</dd></div>
+        <div><dt>現在能看什麼</dt><dd>{d.readerGuide.evidence}</dd></div>
+      </dl>
+      {d.updatedAt && <p class="reader-guide-date">案例資料更新：{formatDate(d.updatedAt)}。以下測試與驗收皆以各段標示的日期、環境與範圍為準。</p>}
+    </section>}
+    {sections.length > 0 && <nav class="case-section-nav" aria-label="本頁段落"><span>直接讀：</span>{sections.map((section) => <a href={`#${section.slug}`}>{section.text}</a>)}</nav>}
     <div class="detail-layout">
       <div>
         <div class="card" style="padding:0;overflow:hidden;margin-bottom:2rem"><ProjectCover project={project} eager /></div>
         <div class="prose"><Content /></div>
+        <section class="next-reading" aria-labelledby="next-reading-title">
+          <p class="eyebrow">Keep exploring</p>
+          <h2 id="next-reading-title">接著看什麼？</h2>
+          {related.length > 0 ? <ul class="next-reading-list">{related.map((item) => <li class="card">
+            <h3><a href={`/projects/${item.project!.id}/`}>{item.project!.data.title}</a></h3>
+            <p>{item.reason}</p>
+            <StatusBadge status={item.project!.data.status} label={item.project!.data.statusLabel} />
+          </li>)}</ul> : <p>想比較不同題目的做法？<a href="/projects/">回作品集依題目與階段挑下一件作品</a>。</p>}
+          <p class="case-contact">對這件作品有問題或建議？<a href="/contact/">帶著作品名稱和你想討論的細節來交流 →</a></p>
+        </section>
       </div>
       <aside class="detail-aside" aria-label="作品資訊">
-        {sections.length > 0 && <nav class="card project-toc" aria-label="本頁目錄"><h2 style="font-size:1rem">讀這件作品</h2><ol>{sections.map((section) => <li><a href={`#${section.slug}`}>{section.text}</a></li>)}</ol></nav>}
         <div class="card">
           <dl>
             <div><dt>類型</dt><dd>{PROJECT_CATEGORIES[d.category]}</dd></div>
