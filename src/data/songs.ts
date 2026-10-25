@@ -1,6 +1,12 @@
 // 每日新增歌曲：在陣列最前面加一筆即可（最新在前）。id = YouTube 影片 ID。
 export interface Song { id: string; title: string; date: string; length: string; intro: string; tags: string[]; }
 export const songs: Song[] = [
+  { id: '6mMz4d_gj10', title: '秋雨咖啡館 Autumn Rain Café', date: '2026-10-25', length: '2:30',
+    intro: '秋天的雨落在街角咖啡館的窗上，店裡放著一首慢慢搖的 bossa nova。A♭ 大調、132 BPM，尼龍弦吉他和雨聲開場，顫音琴吹出往下滴的「雨滴」動機，B 段換排笛接手，中段兩者輪流即興，最後雨停在 A♭maj9。',
+    tags: ['Bossa Nova', 'Jazz Samba', '純音樂', 'AURORA MCP'] },
+  { id: 'qMuwSZJnRDc', title: '末班車霓虹 Last Train Neon', date: '2026-10-24', length: '2:30',
+    intro: '週六夜的捷運末班車，窗外霓虹一格格往後退。B♭ 大調、104 BPM 的 city-pop／funk 器樂：電鋼鋪和弦、拍弦貝斯推律動，clav 切分、銅管點綴，副歌換上 disco 開鈸。',
+    tags: ['City Pop', 'Funk', '純音樂', 'AURORA MCP'] },
   { id: 'gd9sAPLxiXg', title: '愛的大能 The Power of His Love', date: '2026-10-17', length: '約 5 分鐘',
     intro: '一首獻給耶穌的鋼琴敬拜曲。想寫的不是哀傷，而是被愛托住後重新站起來的勇氣。D→E 大調、72 BPM，主奏是 AURORA Ivory Hall Grand 平台鋼琴，橋段不斷攀升，最後全音升調進入高潮。',
     tags: ['鋼琴敬拜', '敬拜讚美', 'AURORA MCP', 'AI Music'] },
