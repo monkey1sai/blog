@@ -1,6 +1,9 @@
 // 每日新增歌曲：在陣列最前面加一筆即可（最新在前）。id = YouTube 影片 ID。
 export interface Song { id: string; title: string; date: string; length: string; intro: string; tags: string[]; }
 export const songs: Song[] = [
+  { id: 'ELGHQh0i0TU', title: '齒輪城華爾滋 Clockwork City Waltz', date: '2026-10-26', length: '2:10',
+    intro: '黃昏的蒸汽龐克城市，廣場鐘樓下的發條人偶上緊發條，跳起三拍子華爾滋。D 小調、♩=168，音樂盒開場，撥奏低音與大鍵琴打出 oom-pah-pah，單簧管唱「上發條」主題，Trio 轉 D 大調由跳弓弦樂推升，最後停在大鍵琴琶音的 Dm。',
+    tags: ['華爾滋', '蒸汽龐克', '純音樂', 'AURORA MCP'] },
   { id: '6mMz4d_gj10', title: '秋雨咖啡館 Autumn Rain Café', date: '2026-10-25', length: '2:30',
     intro: '秋天的雨落在街角咖啡館的窗上，店裡放著一首慢慢搖的 bossa nova。A♭ 大調、132 BPM，尼龍弦吉他和雨聲開場，顫音琴吹出往下滴的「雨滴」動機，B 段換排笛接手，中段兩者輪流即興，最後雨停在 A♭maj9。',
     tags: ['Bossa Nova', 'Jazz Samba', '純音樂', 'AURORA MCP'] },
