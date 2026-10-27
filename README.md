@@ -73,10 +73,12 @@ draft: true                     # 改成 false 才會發布
 | `/blog/`、`/blog/[slug]/`、`/blog/category/[c]/` | 文章列表、文章頁、分類 |
 | `/tags/[tag]/` | 標籤頁（作品與文章） |
 | `/about/`、`/contact/` | 關於、聯絡 |
+| `/support/` | 自願贊助說明與既有商店贊助區入口 |
 | `/rss.xml`、`/sitemap-index.xml`、`/robots.txt` | RSS、sitemap、robots |
 
 - 樣式：`src/styles/global.css`（原生 CSS 與 design tokens；暖紙淺色預設，可切換深色，文章內頁採 720px 閱讀寬度）
 - 社群連結與分類名稱：`src/consts.ts`
+- 贊助入口：首頁、主導覽與頁尾連到 `/support/`；`SPONSORSHIP_URL` 指向商店的 `#sponsorship`。收款平台、幣種、網路、UUID、地址、QR code 與必填 Memo 由商店統一提供，部落格不另外儲存收款資料。閱讀與已開放的下載維持免費。
 - 內容 schema：`src/content.config.ts`
 - 作品封面：原始圖放在 `/workspace/blog-assets/`，執行 `COVERS_SRC=/workspace/blog-assets node scripts/optimize-covers.mjs` 轉成 `public/covers/<slug>.webp`（1280×720）與 `public/images/projects/*.webp`；對照表寫在腳本開頭
 - OG 圖：`public/og-default.svg`，用 `node scripts/build-og.mjs` 轉成 `public/og-default.png`
