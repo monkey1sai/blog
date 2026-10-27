@@ -1,28 +1,28 @@
 ---
 title: 常山龍膽｜用 AI 協作打造趙雲題材 3D 動作遊戲
 subtitle: changshan-longdan
-summary: 在瀏覽器裡玩的 PS2 風格一騎當千：趙雲單騎對上三百名魏兵。程式碼由 AI 撰寫，趙雲模型由我提供，驗收由我把關。
+summary: 趙雲題材的一騎當千動作遊戲：Three.js 網頁版已公開試玩，目前主力轉向 Godot 原生移植；兩個版本的成果與驗收分開記錄。
 readerGuide:
-  takeaway: 三百名敵兵同場的瀏覽器動作遊戲，重點是戰鬥規則、打擊感與效能怎麼取捨。
+  takeaway: 從三百名敵兵同場的網頁動作遊戲，走向 Godot 原生移植；保留可試玩的舊版，也公開新版的驗收邊界。
   contribution: 我提供趙雲模型、決定方向並把關驗收；程式碼由 AI 撰寫。案例保留素材、實作與驗收的分工。
-  evidence: 可以到 itch.io 試玩，也能看真實截圖與歷史測試紀錄。需要電腦與鍵盤或手把，目前沒有觸控操作；部分視覺與硬體驗收仍未完成。
+  evidence: itch.io、截圖與歷史測試對應 Three.js 網頁版；Godot 進度見公開 repo，目前仍在開發，不能用網頁版的紀錄代替原生驗收。
 relatedProjects:
   - id: jev-ai
     reason: 同一個遊戲換成 AI 來操作：看開發版遊玩影片，以及代理目前的限制。
   - id: mmo-asset-pipeline
     reason: 想知道遊戲美術如何從需求走到驗收？這套資產管線的首批需求來自常山龍膽。
 category: game
-tags: [browser-game, threejs, webgl, web-audio, voxel, ai-collaboration]
-techStack: [TypeScript, Three.js, WebAudio, Vite, Vitest, Blender]
+tags: [browser-game, threejs, godot, webgl, web-audio, voxel, ai-collaboration]
+techStack: [Godot, GDScript, TypeScript, Three.js, WebAudio, Vitest, Blender]
 cover: /covers/changshan-longdan.webp
 coverAlt: 《常山龍膽》實際遊戲畫面：趙雲在魏軍陣中連擊，畫面顯示「龍膽 就緒」與 113 HITS
 status: live
-statusLabel: 已公開試玩
+statusLabel: 網頁版公開・Godot 開發中
 order: 1
-updatedAt: 2026-10-08
+updatedAt: 2026-10-27
 links:
   - type: demo
-    label: 在 itch.io 試玩
+    label: 試玩 Three.js 網頁版
     url: https://monkey1sai.itch.io/changshan-longdan
   - type: source
     label: GitHub 原始碼
@@ -34,9 +34,17 @@ featured: true
 featuredOrder: 1
 ---
 
-> 狀態：**已公開試玩**（itch.io，免費，可自由贊助）。原始碼 2026-10-08 起以 MIT 授權公開。建議用電腦版 Chrome、Edge 或 Firefox，搭配鍵盤或手把；目前沒有觸控操作。
+> 網頁版狀態：**已公開試玩**（itch.io，免費，可自由贊助）。原始碼 2026-10-08 起以 MIT 授權公開。建議用電腦版 Chrome、Edge 或 Firefox，搭配鍵盤或手把；目前沒有觸控操作。
 
-上方封面和下面兩張都是 itch.io 商店頁上的真實遊戲截圖，不是概念圖。
+上方封面和下面兩張都是 **Three.js 網頁版**在 itch.io 商店頁上的真實遊戲截圖，不是 Godot 畫面或概念圖。
+
+## 版本演進
+
+- **Three.js 網頁版：已公開試玩。** 保留原版連結、戰鬥設計與當時的驗收紀錄，讓讀者能回看起點。下文的三百兵、WebAudio、截圖及 2026-09／10 上架測試都屬於這個版本。
+- **Godot 原生版：目前主要開發方向。** 依 2026-10-27 核對的[公開 README](https://github.com/monkey1sai/changshan-longdan/blob/main/README.md)，工程使用 Godot 4.7.2、GDScript 與 Compatibility，先以原生版本為主。移植延續原有招式、三百兵、難度與勝敗規則，而不是另開一個只展示畫面的空場景。
+- **新版仍需實際驗收。** README 已記錄 G02 玩法移植與 G03 模型、動作、音效接入的候選進度；可見原生操作、實際蒙皮、手感、人耳、實體手把及效能仍待相應證據。這次內容整理沒有重跑 Godot，也不把 headless 結果寫成完整遊玩驗收。
+
+網頁版提供公開起點；原生版的進度與限制則沿著[Godot 開發文件](https://github.com/monkey1sai/changshan-longdan/blob/main/docs/godot/README.md)追蹤。以下保留網頁版案例，不將舊測試數字套用到新版。
 
 ## 問題
 
@@ -64,7 +72,7 @@ featuredOrder: 1
 
 ## AI 協作
 
-- **程式碼由 AI 撰寫。** repo 的 191 筆 commit 中，有 52 筆標示 Claude Fable 5.1、54 筆標示 Claude Opus 5.5 為共同作者；趙雲整合、上架紀錄等工作則在 `codex/` 分支開 PR 合併。itch.io 頁面也照實勾選「AI Generated Code」。
+- **程式碼由 AI 撰寫。** 2026-10-08 整理時，repo 的 191 筆 commit 中，有 52 筆標示 Claude Fable 5.1、54 筆標示 Claude Opus 5.5 為共同作者；趙雲整合、上架紀錄等工作則在 `codex/` 分支開 PR 合併。itch.io 頁面也照實勾選「AI Generated Code」。
 - **素材由我提供。** 趙雲的 Blender 蒙皮模型是我給的，來源和雜湊記在 `public/models/zhaoyun.manifest.json`。
 - **驗收由我把關。** repo 規則寫明「測試通過不等於視覺驗收」：手感和畫面必須在看得見的瀏覽器裡確認，背景分頁的腳本結果只能當輔助。2026-10-02 那一輪，我的指示是「由我人工審查，你先做驗證再給我審查」，所以 AI 交的是證據和交接文件，不是自己宣布通過。
 - **整理出可重用的流程。** `scripts/verify-player-animation.mjs` 用真實鍵盤、滑鼠在可見 Chrome 裡錄影，輸出 WebM、截圖和 console 紀錄；`npm run package:itch` 打包前會先檢查 itch.io 的 HTML5 限制。這兩支腳本之後可以沿用到別的瀏覽器遊戲。
@@ -85,7 +93,7 @@ featuredOrder: 1
 
 ## 卡關與限制
 
-- **手機不能玩。** 沒有觸控操作，itch.io 也沒勾 Mobile friendly。
+- **公開網頁版沒有手機觸控。** 沒有觸控操作，itch.io 也沒勾 Mobile friendly。
 - **有幾項還不能算通過。** 2026-10-02 上架時依我的指示跳過了剩下的 P0 缺口：近牆時鏡頭遮擋、音效聽感、實體手把、低階硬體和長時間穩定性都還沒驗收。依當時紀錄，四種難度的公平性、隊長 HUD、自然勝敗與重試等合併門檻也還在待驗清單上。
-- **Unity 移植只是實驗。** `unity/` 從 2026-10-03 開始分階段驗證，還沒有可玩的發布版本。
+- **原生版本尚未發布驗收完成。** 目前主力是 Godot；舊 Three.js 與 Unity 內容保留作對照。不要把早期 Unity 實驗或網頁版通過項目當成 Godot 已完成的證據。
 - **這次整理沒有重新試玩。** 上面的遊玩紀錄來自當時的上架驗證。

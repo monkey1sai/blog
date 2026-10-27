@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+<title id="title">灰燼之冠 Ashen Crown</title><desc id="desc">互動敘事工作稿的文字型封面，非遊戲截圖。</desc>
+<rect width="1280" height="720" fill="#F3EBDD"/>
+<rect x="48" y="48" width="1184" height="624" rx="8" fill="none" stroke="#B58A4A" stroke-width="2"/>
+<circle cx="1020" cy="360" r="190" fill="none" stroke="#B58A4A" stroke-width="2" opacity=".45"/>
+<circle cx="1020" cy="360" r="142" fill="none" stroke="#8E3945" stroke-width="12" stroke-dasharray="540 80 160 120" transform="rotate(-35 1020 360)"/>
+<path d="M920 395 L940 304 L1000 348 L1040 282 L1076 345 L1120 315 L1110 395 Z" fill="none" stroke="#20252B" stroke-width="5"/>
+<text x="104" y="220" fill="#8E3945" font-family="sans-serif" font-size="24" letter-spacing="5">AI CRAFT LAB / STORY LAB</text>
+<text x="98" y="355" fill="#20252B" font-family="serif" font-size="92" font-weight="700">灰燼之冠</text>
+<text x="104" y="423" fill="#20252B" font-family="serif" font-size="36" letter-spacing="5">ASHEN CROWN</text>
+<path d="M104 474 H650" stroke="#B58A4A" stroke-width="2"/>
+<text x="104" y="532" fill="#8E3945" font-family="sans-serif" font-size="25">故事 · 人物 · 分鏡 · 修訂</text>
+<text x="104" y="616" fill="#20252B" font-family="sans-serif" font-size="19">創作中 / 文字型封面，非遊戲畫面</text>
+</svg>
