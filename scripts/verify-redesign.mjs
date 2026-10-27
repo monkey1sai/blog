@@ -23,5 +23,5 @@ function visit(dir) {
 visit('dist');
 const projects = readFileSync('dist/projects/index.html', 'utf8');
 assert(projects.includes('data-filter="category"') && projects.includes('data-filter="status"'));
-assert.equal((projects.match(/data-project(?:\s|>)/g) || []).length, 15);
-console.log(`PASS: 3 featured projects; empty articles hidden; 15 projects; media and placeholders checked across ${pages} pages.`);
+assert.equal((projects.match(/data-project(?:\s|>)/g) || []).length, 16);
+console.log(`PASS: 3 featured projects; empty articles hidden; 16 projects; media and placeholders checked across ${pages} pages.`);
