@@ -17,7 +17,10 @@ export const NAV = [
   { href: '/blog/', label: '文章' },
   { href: '/about/', label: '關於' },
   { href: '/contact/', label: '聯絡' },
+  { href: '/support/', label: '贊助支持' },
 ] as const;
+
+export const SPONSORSHIP_URL = 'https://shop.jackshappybot.com/#sponsorship';
 
 export const SOCIALS = [
   { name: 'X', handle: '@monkey1sai', url: 'https://x.com/monkey1sai' },

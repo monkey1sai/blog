@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SPONSORSHIP_URL } from '../consts';
+---
+
+<BaseLayout title="贊助支持" description="自願贊助許竣傑的遊戲、音樂與 AI 實作。透過既有商店選擇 OKX、派網鏈上收款或派網 UUID 站內轉幣；閱讀與已開放的下載維持免費。">
+  <div class="container support-page">
+    <header class="page-header">
+      <p class="eyebrow">Support the next idea</p>
+      <h1>讓下一個想法，<br />也有機會做出來。</h1>
+      <p>我持續把遊戲、音樂與 AI 工具做成作品，也把實作的選擇與過程留在這裡。如果其中一件作品幫上了忙，歡迎用你方便的方式支持後續創作與維護。</p>
+    </header>
+
+    <section class="card support-entry" aria-labelledby="support-methods-title">
+      <p class="eyebrow">Voluntary support</p>
+      <h2 id="support-methods-title">選擇適合你的贊助方式</h2>
+      <p>贊助收款由我的 Jack's Happy Bot 商店統一提供。前往贊助區後，點「查看贊助網路與收款方式」，即可選擇收款平台、幣種與網路，查看對應的地址、QR code 或站內轉幣資訊。</p>
+      <a class="btn btn-primary" href={SPONSORSHIP_URL}>前往商店贊助區 →</a>
+      <p class="muted support-note">開啟 shop.jackshappybot.com 的贊助區，無須連接錢包。</p>
+    </section>
+
+    <section class="section" aria-labelledby="choose-title">
+      <div class="section-head"><h2 id="choose-title">依你的資產所在選擇</h2></div>
+      <div class="grid-3">
+        <article class="card">
+          <p class="eyebrow">01 / Pionex</p>
+          <h3>資產在派網 App</h3>
+          <p>可優先選擇「派網站內轉幣」，在商店核對收款 UUID，再由你於派網 App 自行操作。UUID 是站內收款識別，請勿當作鏈上地址。</p>
+        </article>
+        <article class="card">
+          <p class="eyebrow">02 / OKX</p>
+          <h3>資產在 OKX App</h3>
+          <p>可優先查看商店所列的 USDC／X Layer 收款方式。送出前核對你的資產幣種與可選提幣網路，依 App 顯示確認費用與最低金額。</p>
+        </article>
+        <article class="card">
+          <p class="eyebrow">03 / Onchain</p>
+          <h3>其他交易所或錢包</h3>
+          <p>商店提供 OKX 與派網已開放的鏈上收款選項。請依所選幣種與網路使用對應地址；若顯示必填 Tag／Memo，須一併填寫。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="prose support-principles" aria-labelledby="voluntary-title">
+      <h2 id="voluntary-title">支持隨心，內容持續開放</h2>
+      <p>閱讀部落格與已開放的技能下載不需要贊助。贊助金額由你決定，不建立商品訂單，也不解鎖額外下載權限。</p>
+      <p>每次轉帳前，請以商店當下顯示的收款資訊與交易所 App 的規定為準。網站不會替你轉帳；是否入帳以收款帳戶紀錄確認。</p>
+      <a href="/projects/">繼續看作品 →</a>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .support-page { padding-bottom: var(--space-section); }
+  .support-entry { border-top: 3px solid var(--brass); }
+  .support-entry > p:not(.eyebrow) { max-width: 68ch; }
+  .support-note { margin: 1rem 0 0; font-size: .9rem; }
+  .support-principles { max-width: var(--reading); }
+</style>

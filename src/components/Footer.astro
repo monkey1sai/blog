@@ -12,7 +12,8 @@ const year = new Date().getFullYear();
       <p style="margin:0">{SITE.tagline}</p>
       <p style="margin:.5rem 0 0">© {year} {SITE.author}（{SITE.handle}）{hasPosts && <>· <a href="/rss.xml">RSS</a></>}</p>
     </div>
-    <ul class="footer-links" aria-label="社群連結">
+    <ul class="footer-links" aria-label="贊助與社群連結">
+      <li><a href="/support/">贊助支持</a></li>
       {SOCIALS.map((s) => (
         <li><a href={s.url} rel="me noopener" target="_blank">{s.name}</a></li>
       ))}
