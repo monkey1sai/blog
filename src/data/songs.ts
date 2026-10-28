@@ -1,6 +1,12 @@
 // 每日新增歌曲：在陣列最前面加一筆即可（最新在前）。id = YouTube 影片 ID。
 export interface Song { id: string; title: string; date: string; length: string; intro: string; tags: string[]; }
 export const songs: Song[] = [
+  { id: '8NGCrvwngvA', title: '孤城望月 Moon over the Lone Fortress', date: '2026-10-28', length: '2:39',
+    intro: '邊關孤城，守將在城頭望著月亮，想起遠方的家。G 小調、58 BPM 古風史詩器樂，古箏與二胡唱主旋律，弦樂、合唱與大提琴鋪底，太鼓推上高潮，最後由頌缽收尾。',
+    tags: ['古風', '史詩', '純音樂', 'AURORA MCP'] },
+  { id: 'VWJ3FjyCFyM', title: '高地晨岸 Highland Morning Coast', date: '2026-10-27', length: '2:18',
+    intro: '蘇格蘭高地的清晨，海浪拍上岸，霧慢慢散開。E 多利安調、6/8 拍凱爾特吉格，竹笛代替錫口哨、二胡代替小提琴，十二弦吉他與持續低音扮演風笛，手鼓打出 bodhrán 律動，伴著海浪聲。',
+    tags: ['凱爾特', '吉格', '純音樂', 'AURORA MCP'] },
   { id: 'ELGHQh0i0TU', title: '齒輪城華爾滋 Clockwork City Waltz', date: '2026-10-26', length: '2:10',
     intro: '黃昏的蒸汽龐克城市，廣場鐘樓下的發條人偶上緊發條，跳起三拍子華爾滋。D 小調、♩=168，音樂盒開場，撥奏低音與大鍵琴打出 oom-pah-pah，單簧管唱「上發條」主題，Trio 轉 D 大調由跳弓弦樂推升，最後停在大鍵琴琶音的 Dm。',
     tags: ['華爾滋', '蒸汽龐克', '純音樂', 'AURORA MCP'] },
