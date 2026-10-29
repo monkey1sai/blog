@@ -14,6 +14,7 @@ export const NAV = [
   { href: '/', label: '首頁' },
   { href: '/projects/', label: '作品集' },
   { href: '/music/', label: '音樂' },
+  { href: '/novel/ashen-crown/', label: '小說' },
   { href: '/blog/', label: '文章' },
   { href: '/about/', label: '關於' },
   { href: '/contact/', label: '聯絡' },

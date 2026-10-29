@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const PDF = '/novel/ashen-crown.pdf';
+---
+
+<BaseLayout title="《灰燼之冠》Ashen Crown｜小說閱讀版" description="《灰燼之冠》奇幻遊戲故事改編小說，收錄 day-000 至 day-042 預設路線，線上閱讀或下載 PDF。">
+  <div class="container novel-page">
+    <header class="page-header">
+      <p class="eyebrow">Novel / Ashen Crown</p>
+      <h1>《灰燼之冠》</h1>
+      <p>由奇幻遊戲故事改編的小說閱讀版，收錄 day-000 至 day-042 的預設路線，寫到第二十二天的早晨。小說持續增長，PDF 會在累積到一定篇幅後更新。</p>
+    </header>
+
+    <section class="card novel-meta" aria-label="檔案資訊">
+      <p>插圖小說版 PDF · 72 頁 · 約 8.9 MB</p>
+      <a class="btn btn-primary" href={PDF} download="灰燼之冠_插圖小說版.pdf">下載 PDF</a>
+      <a class="btn" href={PDF} target="_blank" rel="noopener">在新分頁開啟</a>
+    </section>
+
+    <section class="section novel-viewer" aria-label="線上閱讀">
+      <object data={PDF} type="application/pdf" width="100%" height="900">
+        <p>你的瀏覽器無法直接顯示 PDF，請<a href={PDF}>點此開啟或下載《灰燼之冠》</a>。</p>
+      </object>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .novel-page { padding-bottom: var(--space-section); }
+  .novel-meta { border-top: 3px solid var(--brass); display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+  .novel-meta p { margin: 0; flex: 1 1 100%; }
+  .novel-viewer object { display: block; min-height: 70vh; border-radius: 8px; border: 1px solid var(--line, #ccc); }
+</style>
