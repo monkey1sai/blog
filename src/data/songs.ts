@@ -1,6 +1,12 @@
 // 每日新增歌曲：在陣列最前面加一筆即可（最新在前）。id = YouTube 影片 ID。
 export interface Song { id: string; title: string; date: string; length: string; intro: string; tags: string[]; }
 export const songs: Song[] = [
+  { id: 'hgxm4gJTxZ0', title: '渡口斜陽 Ferry at Dusk', date: '2026-10-30', length: '2:38',
+    intro: '黃昏的老渡口，船夫等一個不會回來的人。B 小調、100 BPM 滄桑情歌器樂，十二弦吉他分解和弦點亮江面，二胡唱出往下嘆、再往上望的動機；尼龍吉他接手律動，鋼琴在高音區對答，最後一段二胡衝上全曲最高音。',
+    tags: ['滄桑情歌', '二胡', '純音樂', 'AURORA MCP'] },
+  { id: 'HzvaS1LlcNg', title: '長風少年 Rider of the Long Wind', date: '2026-10-29', length: '2:38',
+    intro: '一個少年騎著風，往遠方衝。D 大調、128 BPM 熱血英雄器樂，銅管唱出一句能跟著哼的五聲主題，supersaw 撐起主歌，弦樂頑固音型一路推進，副歌全鼓組進場；中段只剩合唱喘口氣，終段主題衝上全曲最高點。',
+    tags: ['熱血', '英雄', '純音樂', 'AURORA MCP'] },
   { id: '8NGCrvwngvA', title: '孤城望月 Moon over the Lone Fortress', date: '2026-10-28', length: '2:39',
     intro: '邊關孤城，守將在城頭望著月亮，想起遠方的家。G 小調、58 BPM 古風史詩器樂，古箏與二胡唱主旋律，弦樂、合唱與大提琴鋪底，太鼓推上高潮，最後由頌缽收尾。',
     tags: ['古風', '史詩', '純音樂', 'AURORA MCP'] },
