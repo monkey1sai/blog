@@ -1,6 +1,15 @@
 // 每日新增歌曲：在陣列最前面加一筆即可（最新在前）。id = YouTube 影片 ID。
 export interface Song { id: string; title: string; date: string; length: string; intro: string; tags: string[]; }
 export const songs: Song[] = [
+  { id: 'ImfrrNCgU8A', title: '未寄的信 Letters Never Sent', date: '2026-11-02', length: '2:45',
+    intro: '老人在檯燈下，重讀一輩子沒寄出的情書。C♯ 小調 6/8 滄桑情歌器樂，氈布鋼琴分解和弦慢慢搖，類比合成器像人聲一樣滑著唱；橋段換玻璃琴唱一段全新的旋律，強弱一波一波推，最後一段最響。',
+    tags: ['滄桑情歌', '鋼琴', '合成器', '純音樂', 'AURORA MCP'] },
+  { id: '2B15mlE_pqU', title: '鐵翼破雲 Iron Wings through the Storm', date: '2026-11-01', length: '2:34',
+    intro: '戰機編隊衝進雷雨雲，破雲見日。F 大調、130 BPM 熱血英雄器樂，銅管唱出五聲主題，法國號在主歌接手、終段另拉一條對位線；弦樂頑固音型和太鼓一路推，中段收薄喘口氣，最後主題衝上全曲最高點。',
+    tags: ['熱血英雄', '銅管', '法國號', '純音樂', 'AURORA MCP'] },
+  { id: 'L2dPWCRAkHI', title: '雲山鐘聲 Temple Bells above the Clouds', date: '2026-10-31', length: '2:50',
+    intro: '雲海之上的山寺，晨鐘一聲聲把雲推開。C 小調、60 BPM 古風史詩器樂，竹笛主奏、寺鐘在句尾應答，古箏分解和弦鋪底；安靜開場、中段收薄，高潮時鐘聲每小節齊鳴、竹笛拉到最高。',
+    tags: ['古風史詩', '竹笛', '寺鐘', '純音樂', 'AURORA MCP'] },
   { id: 'hgxm4gJTxZ0', title: '渡口斜陽 Ferry at Dusk', date: '2026-10-30', length: '2:38',
     intro: '黃昏的老渡口，船夫等一個不會回來的人。B 小調、100 BPM 滄桑情歌器樂，十二弦吉他分解和弦點亮江面，二胡唱出往下嘆、再往上望的動機；尼龍吉他接手律動，鋼琴在高音區對答，最後一段二胡衝上全曲最高音。',
     tags: ['滄桑情歌', '二胡', '純音樂', 'AURORA MCP'] },
