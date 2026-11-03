@@ -1,6 +1,9 @@
 // 每日新增歌曲：在陣列最前面加一筆即可（最新在前）。id = YouTube 影片 ID。
 export interface Song { id: string; title: string; date: string; length: string; intro: string; tags: string[]; }
 export const songs: Song[] = [
+  { id: 'hJyl1nvnDEE', title: '劍冢秋聲 Autumn Voices at the Sword Tomb', date: '2026-11-03', length: '2:52',
+    intro: '老劍客在秋暮重回埋劍的土丘。F 小調、56 BPM 古風史詩器樂，排簫獨奏一開口就唱主題，二胡接手、古箏琶音鋪底；安靜的獨奏前奏、中段收薄，高潮時太鼓與重低衝擊齊下、排簫拉到最高。',
+    tags: ['古風史詩', '排簫', '二胡', '純音樂', 'AURORA MCP'] },
   { id: 'ImfrrNCgU8A', title: '未寄的信 Letters Never Sent', date: '2026-11-02', length: '2:45',
     intro: '老人在檯燈下，重讀一輩子沒寄出的情書。C♯ 小調 6/8 滄桑情歌器樂，氈布鋼琴分解和弦慢慢搖，類比合成器像人聲一樣滑著唱；橋段換玻璃琴唱一段全新的旋律，強弱一波一波推，最後一段最響。',
     tags: ['滄桑情歌', '鋼琴', '合成器', '純音樂', 'AURORA MCP'] },
