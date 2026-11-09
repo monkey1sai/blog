@@ -1,6 +1,15 @@
 // 每日新增歌曲：在陣列最前面加一筆即可（最新在前）。id = YouTube 影片 ID。
 export interface Song { id: string; title: string; date: string; length: string; intro: string; tags: string[]; }
 export const songs: Song[] = [
+  { id: 'DQNIp2cLrm0', title: '雪落琴臺 Snowfall on the Zither Terrace', date: '2026-11-09', length: '2:39',
+    intro: '雪夜的廢棄琴臺，笛聲獨自吹完一句舊曲。A 小調、64 BPM 古風史詩器樂，笛子第一拍就獨奏主題，二胡接手高音、豎琴琶音與冰晶燈籠鋪底；中段收薄換大提琴唱新旋律，高潮時全曲最大。',
+    tags: ['古風史詩', '笛子', '二胡', '純音樂', 'AURORA MCP'] },
+  { id: 'm4D6A4UU2kA', title: '半壺殘酒 Half a Jug of Old Wine', date: '2026-11-08', length: '2:44',
+    intro: '深夜小酒館，老浪人對著半壺酒想念年輕時錯過的人。E 小調、102 BPM 滄桑酒館民謠器樂，單簧管主奏、鋼琴八分音符分解和弦、尼龍吉他反拍；收薄段換大提琴唱新旋律，終段最響。',
+    tags: ['滄桑情歌', '單簧管', '民謠', '純音樂', 'AURORA MCP'] },
+  { id: 'vq_RMzZrMVA', title: '龍舟擂鼓 Dragon Boat Thunder', date: '2026-11-07', length: '2:19',
+    intro: '端午龍舟競渡，鼓手擂鼓、衝線奪標。A 大調、126 BPM 熱血英雄器樂，硬同步合成主奏搭 80 年代銅管切分重音、類比琶音像划槳聲；副歌比主歌更響，收薄換氣後終段衝到最大。',
+    tags: ['熱血英雄', '合成器', '龍舟鼓', '純音樂', 'AURORA MCP'] },
   { id: 'hJyl1nvnDEE', title: '劍冢秋聲 Autumn Voices at the Sword Tomb', date: '2026-11-03', length: '2:52',
     intro: '老劍客在秋暮重回埋劍的土丘。F 小調、56 BPM 古風史詩器樂，排簫獨奏一開口就唱主題，二胡接手、古箏琶音鋪底；安靜的獨奏前奏、中段收薄，高潮時太鼓與重低衝擊齊下、排簫拉到最高。',
     tags: ['古風史詩', '排簫', '二胡', '純音樂', 'AURORA MCP'] },
