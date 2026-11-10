@@ -1,6 +1,9 @@
 // 每日新增歌曲：在陣列最前面加一筆即可（最新在前）。id = YouTube 影片 ID。
 export interface Song { id: string; title: string; date: string; length: string; intro: string; tags: string[]; }
 export const songs: Song[] = [
+  { id: 'C7fdd20iGvw', title: '旭日點將台 Sunrise Muster', date: '2026-11-10', length: '2:08',
+    intro: '破曉的點將台，旭日初升，號角喚醒營地，大軍點兵出征。G 大調、132 BPM 熱血英雄器樂，電影感波表主奏一開場就吹出主題，超鋸齒撥弦八分音符推進，FM 銅管進行曲切分，母音合唱與 Reese 低音墊底；中段收薄成銅管號角獨奏，副歌比主歌更響，終段衝到全曲最高點。',
+    tags: ['熱血英雄', '銅管', '號角', '純音樂', 'AURORA MCP'] },
   { id: 'DQNIp2cLrm0', title: '雪落琴臺 Snowfall on the Zither Terrace', date: '2026-11-09', length: '2:39',
     intro: '雪夜的廢棄琴臺，笛聲獨自吹完一句舊曲。A 小調、64 BPM 古風史詩器樂，笛子第一拍就獨奏主題，二胡接手高音、豎琴琶音與冰晶燈籠鋪底；中段收薄換大提琴唱新旋律，高潮時全曲最大。',
     tags: ['古風史詩', '笛子', '二胡', '純音樂', 'AURORA MCP'] },
