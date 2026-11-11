@@ -1,6 +1,9 @@
 // 每日新增歌曲：在陣列最前面加一筆即可（最新在前）。id = YouTube 影片 ID。
 export interface Song { id: string; title: string; date: string; length: string; intro: string; tags: string[]; }
 export const songs: Song[] = [
+  { id: 'D-bdJafH15k', title: '褪色相片 Faded Photograph', date: '2026-11-11', length: '2:30',
+    intro: '老照相館明天就要收了，最後一晚，老師傅在暗房把一張褪色的舊合照重新沖洗，紅燈下慢慢浮出年輕時的她。F♯ 小調、100 BPM 滄桑情歌器樂，法國號 1.2 秒就吹出主題，停在長音上像一句說不出口的話；大提琴只在長音與換氣時低聲應答，電鋼分解和弦推進，副歌換十二弦吉他；收薄段大提琴自己唱新旋律，終段全曲最響。',
+    tags: ['滄桑情歌', '法國號', '大提琴', '純音樂', 'AURORA MCP'] },
   { id: 'C7fdd20iGvw', title: '旭日點將台 Sunrise Muster', date: '2026-11-10', length: '2:08',
     intro: '破曉的點將台，旭日初升，號角喚醒營地，大軍點兵出征。G 大調、132 BPM 熱血英雄器樂，電影感波表主奏一開場就吹出主題，超鋸齒撥弦八分音符推進，FM 銅管進行曲切分，母音合唱與 Reese 低音墊底；中段收薄成銅管號角獨奏，副歌比主歌更響，終段衝到全曲最高點。',
     tags: ['熱血英雄', '銅管', '號角', '純音樂', 'AURORA MCP'] },
