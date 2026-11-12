@@ -1,6 +1,9 @@
 // 每日新增歌曲：在陣列最前面加一筆即可（最新在前）。id = YouTube 影片 ID。
 export interface Song { id: string; title: string; date: string; length: string; intro: string; tags: string[]; }
 export const songs: Song[] = [
+  { id: '7dgyxqQAhHw', title: '大漠駝鈴 Camel Bells across the Desert', date: '2026-11-12', length: '2:33',
+    intro: '絲路月夜，商隊翻越沙丘，風聲、駝鈴與老人低低吟唱的古調交織。D 小調、62 BPM 古風史詩器樂，合唱 0.97 秒清唱開場當主奏，竹笛只在合唱長音裡應答，古箏以開放分解和弦鋪底，大提琴長音與駝鈴、風聲相伴；收薄後高潮換上全新的 B 主題，全曲最響。',
+    tags: ['古風史詩', '合唱', '竹笛', '純音樂', 'AURORA MCP'] },
   { id: 'D-bdJafH15k', title: '褪色相片 Faded Photograph', date: '2026-11-11', length: '2:30',
     intro: '老照相館明天就要收了，最後一晚，老師傅在暗房把一張褪色的舊合照重新沖洗，紅燈下慢慢浮出年輕時的她。F♯ 小調、100 BPM 滄桑情歌器樂，法國號 1.2 秒就吹出主題，停在長音上像一句說不出口的話；大提琴只在長音與換氣時低聲應答，電鋼分解和弦推進，副歌換十二弦吉他；收薄段大提琴自己唱新旋律，終段全曲最響。',
     tags: ['滄桑情歌', '法國號', '大提琴', '純音樂', 'AURORA MCP'] },
