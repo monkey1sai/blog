@@ -1,6 +1,9 @@
 // 每日新增歌曲：在陣列最前面加一筆即可（最新在前）。id = YouTube 影片 ID。
 export interface Song { id: string; title: string; date: string; length: string; intro: string; tags: string[]; }
 export const songs: Song[] = [
+  { id: 'QlqvHBBers0', title: '醒獅上樁 Lion Dance on the High Poles', date: '2026-11-13', length: '2:16',
+    intro: '廣東醒獅高樁採青：鑼鼓開場、醒獅出洞、一樁一樁往上，最後在最高的樁上採青。C 大調、134 BPM 熱血英雄器樂，竹笛第 1 拍就吹出副歌鉤子，二胡只在長音裡應答，古箏八分音符一路推進，獅鼓與鈸當獅鑼；鼓陣收薄後二胡獨唱新旋律，高潮全音轉 D 大調，銅管與竹笛同音齊奏，全曲最響。',
+    tags: ['熱血英雄', '竹笛', '二胡', '純音樂', 'AURORA MCP'] },
   { id: '7dgyxqQAhHw', title: '大漠駝鈴 Camel Bells across the Desert', date: '2026-11-12', length: '2:33',
     intro: '絲路月夜，商隊翻越沙丘，風聲、駝鈴與老人低低吟唱的古調交織。D 小調、62 BPM 古風史詩器樂，合唱 0.97 秒清唱開場當主奏，竹笛只在合唱長音裡應答，古箏以開放分解和弦鋪底，大提琴長音與駝鈴、風聲相伴；收薄後高潮換上全新的 B 主題，全曲最響。',
     tags: ['古風史詩', '合唱', '竹笛', '純音樂', 'AURORA MCP'] },
