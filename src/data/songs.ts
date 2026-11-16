@@ -1,6 +1,9 @@
 // 每日新增歌曲：在陣列最前面加一筆即可（最新在前）。id = YouTube 影片 ID。
 export interface Song { id: string; title: string; date: string; length: string; intro: string; tags: string[]; }
 export const songs: Song[] = [
+  { id: 'cFFuhRGIXR8', title: '落幕之後 After the Final Curtain', date: '2026-11-16', length: '2:48',
+    intro: '老戲院最後一場戲散了，燈一盞一盞熄掉，老戲子坐在後台對著鏡子卸妝。G 小調、104 BPM 滄桑情歌器樂，合成人聲主奏一開口就是副歌鉤子，像在空戲台上最後吊一次嗓；電鋼琴只在長音與換氣時下手，大提琴輕聲應答；橋段音樂盒唱回憶旋律、大提琴接手，終段在最高的 E♭6 謝幕。',
+    tags: ['滄桑情歌', '合成人聲', '大提琴', '純音樂', 'AURORA MCP'] },
   { id: 'QlqvHBBers0', title: '醒獅上樁 Lion Dance on the High Poles', date: '2026-11-13', length: '2:16',
     intro: '廣東醒獅高樁採青：鑼鼓開場、醒獅出洞、一樁一樁往上，最後在最高的樁上採青。C 大調、134 BPM 熱血英雄器樂，竹笛第 1 拍就吹出副歌鉤子，二胡只在長音裡應答，古箏八分音符一路推進，獅鼓與鈸當獅鑼；鼓陣收薄後二胡獨唱新旋律，高潮全音轉 D 大調，銅管與竹笛同音齊奏，全曲最響。',
     tags: ['熱血英雄', '竹笛', '二胡', '純音樂', 'AURORA MCP'] },
