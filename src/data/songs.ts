@@ -1,6 +1,9 @@
 // 每日新增歌曲：在陣列最前面加一筆即可（最新在前）。id = YouTube 影片 ID。
 export interface Song { id: string; title: string; date: string; length: string; intro: string; tags: string[]; }
 export const songs: Song[] = [
+  { id: '6WiZ-nPKXWc', title: '錢塘夜潮 Midnight Tide on the Qiantang', date: '2026-11-17', length: '2:49',
+    intro: '中秋過後的月夜，一位老將獨自站在錢塘江堤上。E 五聲小調、57 BPM 古風史詩器樂，二胡在潮聲裡唱主旋律，古箏撥出心事；副歌法國號托住和聲、弦樂跳弓像浪層層湧上，太鼓壓步；高潮整首升高一個全音，二胡衝上最高音，最後潮退、主題在新調上輕輕再唱一次。',
+    tags: ['古風', '史詩', '二胡', '純音樂', 'AURORA MCP'] },
   { id: 'cFFuhRGIXR8', title: '落幕之後 After the Final Curtain', date: '2026-11-16', length: '2:48',
     intro: '老戲院最後一場戲散了，燈一盞一盞熄掉，老戲子坐在後台對著鏡子卸妝。G 小調、104 BPM 滄桑情歌器樂，合成人聲主奏一開口就是副歌鉤子，像在空戲台上最後吊一次嗓；電鋼琴只在長音與換氣時下手，大提琴輕聲應答；橋段音樂盒唱回憶旋律、大提琴接手，終段在最高的 E♭6 謝幕。',
     tags: ['滄桑情歌', '合成人聲', '大提琴', '純音樂', 'AURORA MCP'] },
