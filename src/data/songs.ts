@@ -1,6 +1,9 @@
 // 每日新增歌曲：在陣列最前面加一筆即可（最新在前）。id = YouTube 影片 ID。
 export interface Song { id: string; title: string; date: string; length: string; intro: string; tags: string[]; }
 export const songs: Song[] = [
+  { id: '-zShOLLLvtM', title: '逆火而行 Into the Blaze', date: '2026-11-18', length: '2:26',
+    intro: '深夜警鈴一響，消防員逆著逃生人潮衝進火場。B♭ 大調、124 BPM 熱血英雄器樂，失真主奏第一拍就從最高音撲下、唱出副歌鉤子，門控和弦像火光閃爍，法國號在低處托住和聲；橋段走進濃煙，只剩法國號獨奏，小鼓越滾越快，整首升高半音進入高潮，天亮收隊時鉤子再輕輕唱一次。',
+    tags: ['熱血英雄', '失真主奏', '法國號', '純音樂', 'AURORA MCP'] },
   { id: '6WiZ-nPKXWc', title: '錢塘夜潮 Midnight Tide on the Qiantang', date: '2026-11-17', length: '2:49',
     intro: '中秋過後的月夜，一位老將獨自站在錢塘江堤上。E 五聲小調、57 BPM 古風史詩器樂，二胡在潮聲裡唱主旋律，古箏撥出心事；副歌法國號托住和聲、弦樂跳弓像浪層層湧上，太鼓壓步；高潮整首升高一個全音，二胡衝上最高音，最後潮退、主題在新調上輕輕再唱一次。',
     tags: ['古風', '史詩', '二胡', '純音樂', 'AURORA MCP'] },
