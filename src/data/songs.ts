@@ -1,6 +1,9 @@
 // 每日新增歌曲：在陣列最前面加一筆即可（最新在前）。id = YouTube 影片 ID。
 export interface Song { id: string; title: string; date: string; length: string; intro: string; tags: string[]; }
 export const songs: Song[] = [
+  { id: 'DDPBKwsTYm4', title: '燈還亮著 The Lamp Is Still On', date: '2026-11-19', length: '2:38',
+    intro: '十年沒回家的人搭末班車回到老巷，母親每晚留著的那盞燈還亮著。D 小調、101 BPM 的繁中原創歌曲（導唱旋律版）：大提琴代替人聲唱旋律，鋼琴分解和弦走主歌，副歌加進十二弦吉他與弦樂，二胡只在長音與換氣時回應；橋段推到最高後，落拍副歌只剩鋼琴與燈鈴，結尾轉成 D 大和弦。',
+    tags: ['滄桑', '原創歌曲', '大提琴導唱', '二胡', 'AURORA MCP'] },
   { id: '-zShOLLLvtM', title: '逆火而行 Into the Blaze', date: '2026-11-18', length: '2:26',
     intro: '深夜警鈴一響，消防員逆著逃生人潮衝進火場。B♭ 大調、124 BPM 熱血英雄器樂，失真主奏第一拍就從最高音撲下、唱出副歌鉤子，門控和弦像火光閃爍，法國號在低處托住和聲；橋段走進濃煙，只剩法國號獨奏，小鼓越滾越快，整首升高半音進入高潮，天亮收隊時鉤子再輕輕唱一次。',
     tags: ['熱血英雄', '失真主奏', '法國號', '純音樂', 'AURORA MCP'] },
