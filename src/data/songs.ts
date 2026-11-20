@@ -1,6 +1,9 @@
 // 每日新增歌曲：在陣列最前面加一筆即可（最新在前）。id = YouTube 影片 ID。
 export interface Song { id: string; title: string; date: string; length: string; intro: string; tags: string[]; }
 export const songs: Song[] = [
+  { id: '9KxfNDG_lhM', title: '筆下山河 Rivers and Mountains under the Brush', date: '2026-11-20', length: '2:52',
+    intro: '宮變之夜，刀鋒逼史官改寫昨天，他寫下「筆下山河，一字不改」；兄長倒下後，他拾起筆寫同一句。B 小調、60 BPM 的古風史詩繁中原創歌曲（導唱旋律版）：法國號代替男聲唱旋律，竹笛 0 秒吹出副歌鉤子、只在長音裡應答，古箏鋪高音分解；副歌加進合唱與太鼓，橋段收薄到只剩古箏與頌缽，終段全曲最響。人物與情節為虛構。',
+    tags: ['古風史詩', '原創歌曲', '法國號導唱', '竹笛', 'AURORA MCP'] },
   { id: 'DDPBKwsTYm4', title: '燈還亮著 The Lamp Is Still On', date: '2026-11-19', length: '2:38',
     intro: '十年沒回家的人搭末班車回到老巷，母親每晚留著的那盞燈還亮著。D 小調、101 BPM 的繁中原創歌曲（導唱旋律版）：大提琴代替人聲唱旋律，鋼琴分解和弦走主歌，副歌加進十二弦吉他與弦樂，二胡只在長音與換氣時回應；橋段推到最高後，落拍副歌只剩鋼琴與燈鈴，結尾轉成 D 大和弦。',
     tags: ['滄桑', '原創歌曲', '大提琴導唱', '二胡', 'AURORA MCP'] },
