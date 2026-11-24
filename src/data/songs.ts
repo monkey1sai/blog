@@ -1,6 +1,9 @@
 // 每日新增歌曲：在陣列最前面加一筆即可（最新在前）。id = YouTube 影片 ID。
 export interface Song { id: string; title: string; date: string; length: string; intro: string; tags: string[]; }
 export const songs: Song[] = [
+  { id: '_gx3HR5ru4A', title: '數到八 Count of Eight', date: '2026-11-23', length: '2:49',
+    intro: '地下拳館的拳手白天扛貨、夜裡打沙袋，角落有一雙小手在等；裁判數到八，他就站起來。E♭ 大調、129 BPM 的熱血英雄繁中原創歌曲（導唱旋律版）：合成人聲導唱，銅管在副歌高八度走第二旋律，弦樂低音域跳弓推進，終段最響。故事為虛構。',
+    tags: ['熱血英雄', '原創歌曲', '銅管', '導唱', 'AURORA MCP'] },
   { id: '9KxfNDG_lhM', title: '筆下山河 Rivers and Mountains under the Brush', date: '2026-11-20', length: '2:52',
     intro: '宮變之夜，刀鋒逼史官改寫昨天，他寫下「筆下山河，一字不改」；兄長倒下後，他拾起筆寫同一句。B 小調、60 BPM 的古風史詩繁中原創歌曲（導唱旋律版）：法國號代替男聲唱旋律，竹笛 0 秒吹出副歌鉤子、只在長音裡應答，古箏鋪高音分解；副歌加進合唱與太鼓，橋段收薄到只剩古箏與頌缽，終段全曲最響。人物與情節為虛構。',
     tags: ['古風史詩', '原創歌曲', '法國號導唱', '竹笛', 'AURORA MCP'] },
