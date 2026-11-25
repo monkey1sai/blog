@@ -1,6 +1,12 @@
 // 每日新增歌曲：在陣列最前面加一筆即可（最新在前）。id = YouTube 影片 ID。
 export interface Song { id: string; title: string; date: string; length: string; intro: string; tags: string[]; }
 export const songs: Song[] = [
+  { id: 'ryQyJ5zfaf0', title: '北斗在天 Star Over the Bow', date: '2026-11-25', length: '2:51',
+    intro: '年輕舵手出港前對母親說：想我的時候就抬頭，同一顆星照著兩個人。B♭ 小調、59 BPM 的古風史詩繁中原創歌曲（導唱旋律版）：Vesper Choir 代替男聲唱旋律，竹笛 0 秒輕吹副歌鉤子，副歌法國號在低音域應答、古箏在上方分解，橋段收薄，終段全曲最響。故事為虛構。',
+    tags: ['古風史詩', '原創歌曲', '導唱', '古箏', 'AURORA MCP'] },
+  { id: 'gbghkrjYrtc', title: '你又問我是誰 Ask Me Again', date: '2026-11-24', length: '2:55',
+    intro: '失智的老伴每天早上都問她是誰；她每天重新自我介紹——忘了也沒關係，我就再讓你愛我一回。A 小調、54 BPM 的滄桑情歌繁中原創歌曲（導唱旋律版）：Seraphim Voices 代替女聲唱旋律，副歌大提琴在低音域唱獨立第二旋律，鋼琴在上方分解和弦，終段最響。故事為虛構。',
+    tags: ['滄桑情歌', '原創歌曲', '導唱', '大提琴', 'AURORA MCP'] },
   { id: '_gx3HR5ru4A', title: '數到八 Count of Eight', date: '2026-11-23', length: '2:49',
     intro: '地下拳館的拳手白天扛貨、夜裡打沙袋，角落有一雙小手在等；裁判數到八，他就站起來。E♭ 大調、129 BPM 的熱血英雄繁中原創歌曲（導唱旋律版）：合成人聲導唱，銅管在副歌高八度走第二旋律，弦樂低音域跳弓推進，終段最響。故事為虛構。',
     tags: ['熱血英雄', '原創歌曲', '銅管', '導唱', 'AURORA MCP'] },
