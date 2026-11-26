@@ -1,6 +1,9 @@
 // 每日新增歌曲：在陣列最前面加一筆即可（最新在前）。id = YouTube 影片 ID。
 export interface Song { id: string; title: string; date: string; length: string; intro: string; tags: string[]; }
 export const songs: Song[] = [
+  { id: 'JggrHet_ATw', title: '撐住，我就來 Hang On, I\'m On My Way', date: '2026-11-26', length: '2:50',
+    intro: '颱風夜山難搜救志工背繩上山，對講機另一頭是電池快用完的山友；他也曾被人從谷底找回來，這次換他往上走。E 大調、127 BPM 的熱血英雄繁中原創歌曲（導唱旋律版）：Seraphim Voices 代替男聲 0 秒就唱出副歌鉤子，副歌銅管在低音域對位，琶音層在上方分解，終段全曲最響。故事為虛構。',
+    tags: ['熱血英雄', '原創歌曲', '導唱', '銅管', 'AURORA MCP'] },
   { id: 'ryQyJ5zfaf0', title: '北斗在天 Star Over the Bow', date: '2026-11-25', length: '2:51',
     intro: '年輕舵手出港前對母親說：想我的時候就抬頭，同一顆星照著兩個人。B♭ 小調、59 BPM 的古風史詩繁中原創歌曲（導唱旋律版）：Vesper Choir 代替男聲唱旋律，竹笛 0 秒輕吹副歌鉤子，副歌法國號在低音域應答、古箏在上方分解，橋段收薄，終段全曲最響。故事為虛構。',
     tags: ['古風史詩', '原創歌曲', '導唱', '古箏', 'AURORA MCP'] },
