@@ -1,6 +1,9 @@
 // 每日新增歌曲：在陣列最前面加一筆即可（最新在前）。id = YouTube 影片 ID。
 export interface Song { id: string; title: string; date: string; length: string; intro: string; tags: string[]; }
 export const songs: Song[] = [
+  { id: 'rMeBeU5VpZc', title: '一直沒還的傘 The Umbrella I Never Returned', date: '2026-11-27', length: '2:52',
+    intro: '年輕時雨中舊公車站，陌生女孩把傘塞給他說「明天這裡再還」就跑走，他沒問名字只記得傘上一圈藍；三十年後站牌拆成停車場，每逢下雨他仍撐著那把傘走過那一站。C 小調、103 BPM 的滄桑情歌繁中原創歌曲（導唱旋律版）：Ebony Clarinet 代替男聲 0 秒唱出副歌鉤子，大提琴在長音窗裡反向對位，二胡間奏把鉤子拉高八度。',
+    tags: ['滄桑情歌', '原創歌曲', '導唱', '大提琴', 'AURORA MCP'] },
   { id: 'JggrHet_ATw', title: '撐住，我就來 Hang On, I\'m On My Way', date: '2026-11-26', length: '2:50',
     intro: '颱風夜山難搜救志工背繩上山，對講機另一頭是電池快用完的山友；他也曾被人從谷底找回來，這次換他往上走。E 大調、127 BPM 的熱血英雄繁中原創歌曲（導唱旋律版）：Seraphim Voices 代替男聲 0 秒就唱出副歌鉤子，副歌銅管在低音域對位，琶音層在上方分解，終段全曲最響。故事為虛構。',
     tags: ['熱血英雄', '原創歌曲', '導唱', '銅管', 'AURORA MCP'] },
